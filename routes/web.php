@@ -133,7 +133,9 @@ Route::middleware(['anggota'])->group(function(){
 	Route::prefix('setting')->group(function(){
 		Route::get('divisi-jaringan', 'SettingController@divisiJaringan');
 		Route::post('divisi-jaringan/submit', 'SettingController@divisiJaringanSubmit');
-		// Route::get('edit', '')
+		Route::get('divisi-jaringan/edit/{id}', 'SettingController@divisiJaringanEdit');
+		Route::post('divisi-jaringan/update/{id}', 'SettingController@divisiJaringanUpdate');
+		Route::get('divisi-jaringan/hapus/{id}', 'SettingController@divisiJaringanDelete');
 	});
 
 	/* 

@@ -47,4 +47,39 @@ $auth = App\Helper\Lib::auth();
 		</div>
 	</div>
 </div>
+<div class="row">
+	<div class="col-md-12">
+		<div class="card">
+			<div class="card-body">
+				<div class="table-responsive">
+					<table class="table dtable-r">
+						<thead>
+							<tr>
+								<th></th>
+								<th>Divisi Jaringan</th>
+								<th>Aksi</th>
+							</tr>
+						</thead>
+						@foreach($data as $item)
+						@if($item->is_deleted == null)
+						<tbody>
+							<tr>
+								<td></td>
+								<td>
+									{{$item->name}}
+								</td>
+								<td>
+									<a href="{{url('setting/divisi-jaringan/edit/'.$item->id)}}">Edit</a>
+									<a href="{{url('setting/divisi-jaringan/hapus/'.$item->id)}}">hapus</a>
+								</td>
+							</tr>
+						</tbody>
+						@endif
+						@endforeach
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 @endsection
