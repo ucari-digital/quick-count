@@ -53,7 +53,7 @@
                                 </div>
                             </a>
                             <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
-                                <a class="dropdown-item" href="{{url(''.$auth->role.'/edit/'.$auth->anggota_id)}}">
+                                <a class="dropdown-item" href="{{url('profil')}}">
                                     <i class="mdi mdi-cached mr-2 text-success"></i>
                                     Profil
                                 </a>

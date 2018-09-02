@@ -15,6 +15,9 @@
  * Auth Routing
  */
 Route::prefix('/')->group(function(){
+	Route::get('/', function(){
+		return redirect('login');
+	});
 	Route::get('login', 'Auth\LoginController@index');
 	Route::post('login/submit', 'Auth\LoginController@submit');
 });
@@ -125,6 +128,12 @@ Route::middleware(['anggota'])->group(function(){
 	Route::prefix('saksi')->group(function(){
 		Route::post('create', 'Saksi\SaksiController@create');
 		Route::get('delete/{anggota_id}', 'Saksi\SaksiController@delete');
+	});
+
+	Route::prefix('setting')->group(function(){
+		Route::get('divisi-jaringan', 'SettingController@divisiJaringan');
+		Route::post('divisi-jaringan/submit', 'SettingController@divisiJaringanSubmit');
+		// Route::get('edit', '')
 	});
 
 	/* 

@@ -80,7 +80,7 @@
 						<div class="col-md-3">
 							<div class="form-group">
 								<label>Provinsi</label>
-								<select name="provinsi" class="form-control provinsi" required="">
+								<select name="provinsi" class="form-control provinsi">
 									<option value="{{$data->provinsi}}">{{App\Model\Provinsi::getName($data->provinsi)['name']}}</option>
 									@foreach($provinsi as $item)
 									<option value="{{$item->id}}">{{$item->name}}</option>
@@ -91,7 +91,7 @@
 						<div class="col-md-3">
 							<div class="form-group">
 								<label>Kabupaten / Kota</label>
-								<select name="kabkota" id="" class="form-control kabkota" required="">
+								<select name="kabkota" id="" class="form-control kabkota">
 									<option value="{{$data->kabkota}}">{{App\Model\Kota::getName($data->kabkota)['name']}}</option>
 								</select>
 							</div>
@@ -99,7 +99,7 @@
 						<div class="col-md-3">
 							<div class="form-group">
 								<label>Kecamatan</label>
-								<select name="kecamatan" id="" class="form-control kecamatan" required="">
+								<select name="kecamatan" id="" class="form-control kecamatan">
 									<option value="{{$data->kecamatan}}">{{App\Model\Kecamatan::getName($data->kecamatan)['name']}}</option>
 								</select>
 							</div>
@@ -107,7 +107,7 @@
 						<div class="col-md-3">
 							<div class="form-group">
 								<label>Kelurahan</label>
-								<select name="kelurahan" id="" class="form-control kelurahan" required="">
+								<select name="kelurahan" id="" class="form-control kelurahan">
 									<option value="{{$data->kelurahan}}">{{App\Model\Kelurahan::getName($data->kelurahan)['name']}}</option>
 								</select>
 							</div>
