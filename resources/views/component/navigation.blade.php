@@ -65,7 +65,7 @@ $auth = App\Helper\Lib::auth();
         </li>
         @endif
         {{-- QUICK COUNT FEATURE --}}
-        @if($auth->role == 'kordinator' || $auth->role == 'superadmin')
+        @if($auth->role == 'kordinator')
         <li class="nav-item mt-4">
             <small style="color: #9e9e9e;">Quic Count</small>
         </li>
