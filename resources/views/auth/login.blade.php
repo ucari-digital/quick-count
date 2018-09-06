@@ -5,82 +5,88 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>Purple Admin</title>
-        <!-- plugins:css -->
-        <link rel="stylesheet" href="{{url('vendors/iconfonts/mdi/css/materialdesignicons.min.css')}}">
-        <link rel="stylesheet" href="{{url('vendors/css/vendor.bundle.base.css')}}">
-        <!-- endinject -->
-        <!-- plugin css for this page -->
-        <!-- End plugin css for this page -->
-        <!-- inject:css -->
-        <link rel="stylesheet" href="{{url('css/style.css')}}">
-        <!-- endinject -->
-        <link rel="shortcut icon" href="" />
+        <link rel="shortcut icon" href="img/favicon.png">
+        
+        <link rel="stylesheet" href="{{url('fonts/open-sans/style.min.css')}}"> <!-- common font  styles  -->
+        <link rel="stylesheet" href="{{url('fonts/universe-admin/style.css')}}"> <!-- universeadmin icon font styles -->
+        <link rel="stylesheet" href="{{url('fonts/mdi/css/materialdesignicons.min.css')}}"> <!-- meterialdesignicons -->
+        <link rel="stylesheet" href="{{url('fonts/iconfont/style.css')}}"> <!-- DEPRECATED iconmonstr -->
+        <link rel="stylesheet" href="{{url('vendor/flatpickr/flatpickr.min.css')}}"> <!-- original flatpickr plugin (datepicker) styles -->
+        <link rel="stylesheet" href="{{url('vendor/simplebar/simplebar.css')}}"> <!-- original simplebar plugin (scrollbar) styles  -->
+        <link rel="stylesheet" href="{{url('vendor/tagify/tagify.css')}}"> <!-- styles for tags -->
+        <link rel="stylesheet" href="{{url('vendor/tippyjs/tippy.css')}}"> <!-- original tippy plugin (tooltip) styles -->
+        <link rel="stylesheet" href="{{url('vendor/select2/css/select2.min.css')}}"> <!-- original select2 plugin styles -->
+        <link rel="stylesheet" href="{{url('vendor/bootstrap/css/bootstrap.min.css')}}"> <!-- original bootstrap styles -->
+        <link rel="stylesheet" href="{{url('css/style.min.css')}}" id="stylesheet"> <!-- universeadmin styles -->
+        
+        <script src="{{url('js/ie.assign.fix.min.js')}}"></script>
     </head>
-    <body>
-        <div class="container-scroller">
-            <div class="container-fluid page-body-wrapper full-page-wrapper">
-                <div class="content-wrapper d-flex align-items-center auth">
-                    <div class="row w-100">
-                        <div class="col-lg-4 mx-auto">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    @if(session('status') == 'success')
-                                    <div class="alert alert-success" role="alert">
-                                        {{session('message')}}
-                                    </div>
-                                    @elseif(session('status') == 'failed')
-                                    <div class="alert alert-danger" role="alert">
-                                        {{session('message')}}
-                                    </div>
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="auth-form-light text-left p-5">
-                                <div class="brand-logo">
-                                    {{-- <img src="../../images/logo.svg"> --}}
-                                </div>
-                                <h4>Hello! let's get started</h4>
-                                <h6 class="font-weight-light">Sign in to continue.</h6>
-                                <form action="{{url('login/submit')}}" method="post" class="pt-3">
-                                    @csrf
-                                    <div class="form-group">
-                                        <input name="anggota_id" type="text" class="form-control form-control-lg" placeholder="User ID">
-                                    </div>
-                                    <div class="form-group">
-                                        <input name="password" type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password">
-                                    </div>
-                                    <div class="mt-3">
-                                        <button type="submit" class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn">SIGN IN</button>
-                                    </div>
-                                    {{-- <div class="my-2 d-flex justify-content-between align-items-center">
-                                        <div class="form-check">
-                                            <label class="form-check-label text-muted">
-                                                <input type="checkbox" class="form-check-input">
-                                                Keep me signed in
-                                            </label>
-                                        </div>
-                                        <a href="#" class="auth-link text-black">Forgot password?</a>
-                                    </div> --}}
-                                    <div class="text-center mt-4 font-weight-light">
-                                        Don't have an account? <a href="register.html" class="text-primary">Create</a>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- content-wrapper ends -->
-            </div>
-            <!-- page-body-wrapper ends -->
+    <body class="p-front">
+        @if(session('status') == 'success')
+        <div class="alert alert-success" role="alert">
+            {{session('message')}}
         </div>
-        <!-- container-scroller -->
-        <!-- plugins:js -->
-        <script src="{{url('vendors/js/vendor.bundle.base.js')}}"></script>
-        <script src="{{url('vendors/js/vendor.bundle.addons.js')}}"></script>
-        <!-- endinject -->
-        <!-- inject:js -->
-        <script src="{{url('js/off-canvas.js')}}"></script>
-        <script src="{{url('js/misc.js')}}"></script>
-        <!-- endinject -->
+        @elseif(session('status') == 'failed')
+        <div class="alert alert-danger" role="alert">
+            {{session('message')}}
+        </div>
+        @endif
+        <div class="navbar navbar-light navbar-expand-lg p-front__navbar"> <!-- is-dark -->
+            <a class="navbar-brand" href="/"><img src="img/logo.png" alt=""/></a>
+            <a class="navbar-brand-sm" href="/"><img src="img/logo-sm.png" alt=""/></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse">
+            <span class="ua-icon-navbar-open navbar-toggler__open"></span>
+            <span class="ua-icon-alert-close navbar-toggler__close"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbar-collapse">
+                <div class="p-front__navbar-collapse">
+                    <div class="navbar-nav">
+                        <a class="nav-item nav-link active" href="#">About</a>
+                        <a class="nav-item nav-link" href="#">Features</a>
+                        <a class="nav-item nav-link" href="#">Pricing</a>
+                    </div>
+                    <form class="form-inline">
+                        <a class="btn btn-info btn-rounded" href="#">Sign Up</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="p-front__content">
+            <div class="p-signin-a">
+                <form action="{{url('login/submit')}}" method="post" class="p-signin-a__form">
+                    @csrf
+                    <h4 class="p-signin-a__form-heading">Sign In</h4>
+                    <p class="p-signin-a__form-description">
+                        Create a personal account to keep track of your progress.
+                    </p>
+                    
+                    <div class="form-group">
+                        <input name="anggota_id" type="text" class="form-control form-control-lg" placeholder="User ID">
+                    </div>
+                    <div class="form-group">
+                        <input name="password" type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password">
+                    </div>
+                    <div class="mt-3">
+                        <button type="submit" class="btn btn-info btn-lg btn-block btn-rounded" type="button">Sign In</button>
+                    </div>
+                </form>
+                <div class="p-signin-a__form-link">Already have an account? <a href="signup.html">Sign Up</a></div>
+            </div>
+        </div>
+
+
+        <script src="{{url('vendor/echarts/echarts.min.js')}}"></script>
+        <script src="{{url('vendor/jquery/jquery.min.js')}}"></script>
+        <script src="{{url('vendor/popper/popper.min.js')}}"></script>
+        <script src="{{url('vendor/bootstrap/js/bootstrap.min.js')}}"></script>
+        <script src="{{url('vendor/select2/js/select2.full.min.js')}}"></script>
+        <script src="{{url('vendor/simplebar/simplebar.js')}}"></script>
+        <script src="{{url('vendor/text-avatar/jquery.textavatar.js')}}"></script>
+        <script src="{{url('vendor/tippyjs/tippy.all.min.js')}}"></script>
+        <script src="{{url('vendor/flatpickr/flatpickr.min.js')}}"></script>
+        <script src="{{url('vendor/wnumb/wNumb.js')}}"></script>
+        <script src="{{url('js/main.js')}}"></script>
+        <script src="{{url('vendor/sparkline/jquery.sparkline.min.js')}}"></script>
+        <script src="{{url('js/preview/sales-dashboard.min.js')}}"></script>
     </body>
 </html>

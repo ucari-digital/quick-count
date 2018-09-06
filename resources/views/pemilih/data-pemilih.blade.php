@@ -3,20 +3,15 @@
 $auth = App\Helper\Lib::auth();
 @endphp
 @section('breadcrumb')
-<div class="page-header">
-	<h3 class="page-title">
-	<span class="page-title-icon bg-gradient-primary text-white mr-2">
-		<i class="mdi mdi-home"></i>
-	</span>
-	Daftar Pemilih
-	</h3>
-	<nav aria-label="breadcrumb">
-		<ul class="breadcrumb">
-			<li class="breadcrumb-item active" aria-current="page">
-				<a href="{{url('pemilih/create')}}" class="btn btn-gradient-primary">Tambah</a>
-			</li>
-		</ul>
-	</nav>
+<div class="page-content__header">
+	<div>
+		<h2 class="page-content__header-heading">Daftar Pemilih</h2>
+	</div>
+	<div class="page-content__header-meta">
+		<a href="{{url('pemilih/create')}}" class="btn btn-info icon-left">
+			Tambah
+		</a>
+	</div>
 </div>
 <div class="row">
 	<div class="col-md-12">

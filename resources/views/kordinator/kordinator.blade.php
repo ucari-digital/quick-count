@@ -3,99 +3,90 @@
 @php
 $auth = App\Helper\Lib::auth();
 @endphp
-<div class="page-header">
-	<h3 class="page-title">
-	<span class="page-title-icon bg-gradient-primary text-white mr-2">
-		<i class="mdi mdi-home"></i>
-	</span>
-	Dashboard
-	</h3>
-	<nav aria-label="breadcrumb">
-		<ul class="breadcrumb">
-			<li class="breadcrumb-item active" aria-current="page">
-				<button class="btn btn-primary btn-sm btn-toggle" data-toggle="collapse" href="#card-box" role="button" aria-expanded="false" aria-controls="card-box">Hide</button>
-			</li>
-		</ul>
-	</nav>
+<div class="page-content__header">
+	<div>
+		<h2 class="page-content__header-heading">Dashboard</h2>
+	</div>
 </div>
 @endsection
 @section('content')
-<div class="collapse" id="card-box">
-	<div class="row">
-		<div class="col-md-4 stretch-card grid-margin js-link" data-link="{{url('kordinator/kabkota')}}">
-			<div class="card bg-gradient-danger card-img-holder text-white">
-				<div class="card-body">
-					<img src="{{url("storage/images/dashboard/circle.svg")}}" class="card-img-absolute" alt="circle-image">
-					<h4 class="font-weight-normal mb-3">Kordinator Kab/Kota</h4>
-					<h1 class="">{{$kabkota}} <span style="font-size: 16px">Org</span></h1>
-				</div>
+<div class="row">
+	<div class="col-xl-3 col-lg-3 col-md-6">
+		<div class="widget widget-alpha widget-alpha--color-amaranth">
+			<div>
+				<div class="widget-alpha__amount">{{$kabkota}} Orang</div>
+				<div class="widget-alpha__description">Kordinator Kab / Kota</div>
 			</div>
+			<span class="widget-alpha__icon ua-icon-widget-user"></span>
 		</div>
-		<div class="col-md-4 stretch-card grid-margin js-link" data-link="{{url('kordinator/kecamatan')}}">
-			<div class="card bg-gradient-info card-img-holder text-white">
-				<div class="card-body">
-					<img src="{{url("storage/images/dashboard/circle.svg")}}" class="card-img-absolute" alt="circle-image">
-					<h4 class="font-weight-normal mb-3">Kordinator Kecamatan</h4>
-					<h1 class="">{{$kecamatan}} <span style="font-size: 16px">Org</span></h1>
-				</div>
+	</div>
+	<div class="col-xl-3 col-lg-3 col-md-6">
+		<div class="widget widget-alpha widget-alpha--color-green-jungle">
+			<div>
+				<div class="widget-alpha__amount">{{$kecamatan}} Orang</div>
+				<div class="widget-alpha__description">Kordinator Kecamatan</div>
 			</div>
+			<span class="widget-alpha__icon ua-icon-widget-user"></span>
 		</div>
-		<div class="col-md-4 stretch-card grid-margin">
-			<div class="card bg-gradient-success card-img-holder text-white js-link" data-link="{{url('kordinator/kelurahan')}}">
-				<div class="card-body">
-					<img src="{{url("storage/images/dashboard/circle.svg")}}" class="card-img-absolute" alt="circle-image">
-					<h4 class="font-weight-normal mb-3">Kordinator Kelurahan</h4>
-					<h1 class="">{{$kelurahan}} <span style="font-size: 16px">Org</span></h1>
-				</div>
+	</div>
+	<div class="col-xl-3 col-lg-3 col-md-6">
+		<div class="widget widget-alpha widget-alpha--color-orange widget-alpha--donut">
+			<div>
+				<div class="widget-alpha__amount">{{$kelurahan}} Orang</div>
+				<div class="widget-alpha__description">Kordinator Kelurahan</div>
+			</div>
+			<span class="widget-alpha__icon ua-icon-widget-user"></span>
+		</div>
+	</div>
+	<div class="col-xl-3 col-lg-3 col-md-6">
+		<div class="widget widget-alpha widget-alpha--color-java widget-alpha--help">
+			<div>
+				<div class="widget-alpha__amount">{{$relawan}}</div>
+				<div class="widget-alpha__description">Relawan</div>
+			</div>
+			<span class="widget-alpha__icon ua-icon-widget-user"></span>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-6 col-12">
+		<div class="statistic-widget statistic-widget-c">
+			<div class="statistic-widget-c__heading">Daftar Pemilih</div>
+			<div class="statistic-widget-c__body">
+				<div class="statistic-widget-c__value">{{$pemilih}}</div>
+				<div class="statistic-widget-c__title">Keseluruhan Pemilih Terdaftar</div>
+				<a href="#" class="statistic-widget-c__link">Lihat lebih banyak</a>
 			</div>
 		</div>
 	</div>
-	<div class="row">
-		@if($auth->posisi == 'kelurahan')
-		<div class="col-md-4 stretch-card grid-margin">
-			<div class="card bg-gradient-warning card-img-holder text-white js-link" data-link="{{url('relawan/data/saksi')}}">
-				<div class="card-body">
-					<img src="{{url("storage/images/dashboard/circle.svg")}}" class="card-img-absolute" alt="circle-image">
-					<h4 class="font-weight-normal mb-3">Saksi</h4>
-					<h1 class="">{{$saksi}} <span style="font-size: 16px">Org</span></h1>
-				</div>
+	<div class="col-md-3 col-12">
+		<div class="statistic-widget statistic-widget-c statistic-widget-c--heliotrope">
+			<div class="statistic-widget-c__heading">Saksi</div>
+			<div class="statistic-widget-c__body">
+				<div class="statistic-widget-c__value">{{$saksi}}</div>
+				<div class="statistic-widget-c__title">Keseluruhan Saksi TPS</div>
+				<a href="#" class="statistic-widget-c__link">Lihat lebih detail</a>
 			</div>
-		</div>
-		<div class="col-md-4 stretch-card grid-margin">
-			<div class="card bg-gradient-primary card-img-holder text-white js-link" data-link="{{url('relawan/data/')}}">
-				<div class="card-body">
-					<img src="{{url("storage/images/dashboard/circle.svg")}}" class="card-img-absolute" alt="circle-image">
-					<h4 class="font-weight-normal mb-3">Relawan</h4>
-					<h1 class="">{{$relawan}} <span style="font-size: 16px">Org</span></h1>
-				</div>
+		</div>	
+	</div>
+	<div class="col-md-3 col-12">
+		<div class="statistic-widget statistic-widget-c statistic-widget-c--heliotrope">
+			<div class="statistic-widget-c__heading">Caleg</div>
+			<div class="statistic-widget-c__body">
+				<div class="statistic-widget-c__value">{{$caleg}}</div>
+				<div class="statistic-widget-c__title">Total Caleg</div>
+				<a href="#" class="statistic-widget-c__link">Lihat lebih detail</a>
 			</div>
-		</div>
-		@endif
+		</div>	
 	</div>
 </div>
-<div class="page-header">
-	<h3 class="page-title">
-	<span class="page-title-icon bg-gradient-primary text-white mr-2">
-		<i class="mdi mdi-chart-bar"></i>
-	</span>
-	Statistik Perolehan Suara
-	</h3>
-	<nav aria-label="breadcrumb">
-		<ul class="breadcrumb">
-			<li class="breadcrumb-item active" aria-current="page">
-				<button class="btn btn-primary btn-sm btn-toggle-chart" data-toggle="collapse" href="#card-chart" role="button" aria-expanded="false" aria-controls="card-chart">Hide</button>
-			</li>
-		</ul>
-	</nav>
-</div>
-<div class="collapse" id="card-chart">
-	<div class="row mt-3">
-		<div class="col-md-12">
-			<div class="card">
-				<div class="card-body">
-					<div class="chart" style="width: 100%; height: 300px">
-						<canvas id="myChart"></canvas>
-					</div>
+<div class="row my-3">
+	<div class="col-md-12">
+		<div class="card">
+			<div class="card-body">
+				<div class="statistic-widget-c__heading">Statistik Caleg</div>
+				<div class="chart" style="width: 100%; height: 300px">
+					<canvas id="myChart"></canvas>
 				</div>
 			</div>
 		</div>

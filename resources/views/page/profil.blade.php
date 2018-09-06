@@ -1,12 +1,9 @@
 @extends('component.dashboard_layout')
 @section('breadcrumb')
-<div class="page-header">
-	<h3 class="page-title">
-	<span class="page-title-icon bg-gradient-primary text-white mr-2">
-		<i class="mdi mdi-home"></i>
-	</span>
-	Ubah Data Profil
-	</h3>
+<div class="page-content__header">
+	<div>
+		<h2 class="page-content__header-heading">Ubah Data Profil</h2>
+	</div>
 </div>
 <div class="row">
 	<div class="col-md-12">

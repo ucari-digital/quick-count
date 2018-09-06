@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\GSController;
 
 use App\Model\Anggota;
+use App\Model\Kandidat;
 use App\Model\Provinsi;
 use App\Model\Kota;
 use App\Helper\TimeFormat;
@@ -17,12 +18,15 @@ class KordinatorController extends Controller
 {
     public function kordinator()
     {
-        $kabkota = Anggota::where('posisi', 'kabkota')->count();
-        $kecamatan = Anggota::where('posisi', 'kecamatan')->count();
-        $kelurahan = Anggota::where('posisi', 'kelurahan')->count();
-        $saksi = Anggota::where('posisi', 'saksi')->count();
-        $relawan = Anggota::where('posisi', 'relawan')->count();
-    	return view('kordinator.kordinator', compact('kabkota', 'kecamatan', 'kelurahan', 'rtrw', 'saksi', 'relawan'));
+        $kabkota = Anggota::where('group_id', Lib::auth()->group_id)->where('posisi', 'kabkota')->count();
+        $kecamatan = Anggota::where('group_id', Lib::auth()->group_id)->where('posisi', 'kecamatan')->count();
+        $kelurahan = Anggota::where('group_id', Lib::auth()->group_id)->where('posisi', 'kelurahan')->count();
+        $saksi = Anggota::where('group_id', Lib::auth()->group_id)->where('posisi', 'saksi')->count();
+        $relawan = Anggota::where('group_id', Lib::auth()->group_id)->where('posisi', 'relawan')->count();
+        $pemilih = Anggota::where('group_id', Lib::auth()->group_id)->where('posisi', 'pemilih')->count();
+        $caleg = Kandidat::where('group_id', Lib::auth()->group_id)->count();
+        $saksi = Anggota::where('group_id', Lib::auth()->group_id)->where('posisi', 'saksi')->count();
+    	return view('kordinator.kordinator', compact('kabkota', 'kecamatan', 'kelurahan', 'rtrw', 'saksi', 'relawan', 'pemilih', 'caleg', 'saksi'));
     }
 
     public function kabkot()

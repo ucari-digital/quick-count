@@ -19,7 +19,36 @@ class RelawanController extends Controller
     {
         $data = Anggota::where('referred_by', Lib::auth()->anggota_id)->where('role', 'relawan')->count();
         $total_pemilih  = Anggota::where('role', 'pemilih')->count();
-        return view('relawan.relawan', compact('data', 'total_pemilih'));
+
+        // Mengambil jumlah pemilih laki2 dan perempuan
+
+        $perempuan = Anggota::where('group_id', Lib::auth()->group_id)->where('posisi', 'pemilih')->where('jk', 'P')->count();
+        $laki = Anggota::where('group_id', Lib::auth()->group_id)->where('posisi', 'pemilih')->where('jk', 'L')->count();
+        // --------------------------------------------
+
+        $pemilih = [
+            'perempuan' => $perempuan,
+            'laki' => $laki
+        ];
+
+        $daerah_counter = Anggota::where('group_id', Lib::auth()->group_id)->where('posisi', 'pemilih')->get();
+
+        $data_daerah_dumperdata_daerah_dumper = [];
+        foreach ($daerah_counter as $numb => $item) {
+            $data_daerah_dumper[$item->kecamatan]['kecamatan'] = $item->kecamatan;
+            $data_daerah_dumper[$item->kecamatan]['counter'][] = $numb;
+        }
+
+        $daerah = [];
+        foreach ($data_daerah_dumper as $item) {
+            $daerah['daerah'][] = $item['kecamatan'];
+            $daerah['counter'][] = count($item['counter']);
+        }
+
+        // return $daerah;
+        // return $data_daerah_dumper;
+
+        return view('relawan.relawan', compact('data', 'total_pemilih', 'pemilih', 'daerah'));
     }
 
     public function index(Request $request)
@@ -44,6 +73,7 @@ class RelawanController extends Controller
             $data[$numb] = $item;
             $data[$numb]['downline'] = Anggota::where('referred_by', $item->anggota_id)->where('role', 'pemilih')->count();
         }
+
         $kota = Kota::whereIn('id', GSController::cityAvailabel())->get();
     	return view('relawan.data-relawan', compact('data', 'kota'));
     }
