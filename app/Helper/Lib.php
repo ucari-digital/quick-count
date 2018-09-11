@@ -55,4 +55,27 @@ class Lib
 
 		return $data;
 	}
+
+	static function color($get){
+		$color_bank = [
+			'#4caf50',
+			'#e91e63',
+			'#9c27b0',
+			'#2196f3',
+			'#ffeb3b',
+			'#f44336', // red
+			'#673ab7',
+			'#00bcd4',
+			'#009688',
+			'#cddc39',
+			'#ffc107',
+			'#ff9800',
+			'#ff5722',
+			'#795548'
+		];
+
+		$color = array_slice($color_bank, 0, $get);
+
+		return self::array2string($color, true);
+	}
 }

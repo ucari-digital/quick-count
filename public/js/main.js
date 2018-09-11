@@ -380,3 +380,7 @@
     }
   });
 })(jQuery);
+
+$('.js-link').click(function(){
+  window.location.href = $(this).data('link');
+});

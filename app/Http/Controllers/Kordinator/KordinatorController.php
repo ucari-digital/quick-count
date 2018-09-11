@@ -11,6 +11,7 @@ use App\Http\Controllers\GSController;
 use App\Model\Anggota;
 use App\Model\Kandidat;
 use App\Model\Provinsi;
+use App\Model\Kelurahan;
 use App\Model\Kota;
 use App\Helper\TimeFormat;
 use App\Helper\Lib;
@@ -26,7 +27,34 @@ class KordinatorController extends Controller
         $pemilih = Anggota::where('group_id', Lib::auth()->group_id)->where('posisi', 'pemilih')->count();
         $caleg = Kandidat::where('group_id', Lib::auth()->group_id)->count();
         $saksi = Anggota::where('group_id', Lib::auth()->group_id)->where('posisi', 'saksi')->count();
-    	return view('kordinator.kordinator', compact('kabkota', 'kecamatan', 'kelurahan', 'rtrw', 'saksi', 'relawan', 'pemilih', 'caleg', 'saksi'));
+        $top_relawan = Anggota::where('group_id', Lib::auth()->group_id)->where('role', 'relawan')->get();
+
+        $relawan_kelurahan = [];
+        foreach ($top_relawan as $numb => $item) {
+            $relawan_kelurahan[Kelurahan::getName($item->kelurahan)->name]['name'] =  Kelurahan::getName($item->kelurahan)->name;
+            $relawan_kelurahan[Kelurahan::getName($item->kelurahan)->name]['value'][] = $item->anggota_id;
+        }
+
+        $relawan_counter = [];
+        foreach ($relawan_kelurahan as $no => $irelawan) {
+            $relawan_counter[] = [
+                'name' => $irelawan['name'],
+                'value' => count($irelawan['value'])
+            ];
+        }
+
+        // return $relawan_counter;
+
+        $sorted = collect($relawan_counter)->sortByDesc('value');
+
+        $t_relawan = [];
+        foreach ($sorted as $to_relawan) {
+            $t_relawan['name'][] = $to_relawan['name'];
+            $t_relawan['value'][] = $to_relawan['value'];
+        }
+
+
+    	return view('kordinator.kordinator', compact('kabkota', 'kecamatan', 'kelurahan', 'rtrw', 'saksi', 'relawan', 'pemilih', 'caleg', 'saksi', 't_relawan'));
     }
 
     public function kabkot()

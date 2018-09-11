@@ -127,6 +127,12 @@
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
+								<label>No HP</label>
+								<input type="text" name="no_hp" class="form-control" placeholder="No HP">
+							</div>
+						</div>
+						{{-- <div class="col-md-6">
+							<div class="form-group">
 								<label>Pekerjaan</label>
 								<select name="pekerjaan" class="form-control">
 									<option value="">PILIH</option>
@@ -147,39 +153,7 @@
 									<option value="Tidak / Belum Bekerja">Tidak / Belum Bekerja</option>
 								</select>
 							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-4">
-							<div class="form-group">
-								<label>No HP</label>
-								<input type="text" name="no_hp" class="form-control" placeholder="No HP">
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="form-group">
-								<label>No WhatsApp</label>
-								<input type="text" name="no_wa" class="form-control" placeholder="No WhatsApp">
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="form-group">
-								<label>Email</label>
-								<input type="Email" name="email" class="form-control" placeholder="No Email">
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-6">
-							<div class="form-group">
-								<label>Divisi Jarigan</label>
-								<select name="divisi_jaringan" id="" class="form-control">
-									<option value="Gerindra">Gerindra</option>
-									<option value="PAN">PAN</option>
-									<option value="PKS">PKS</option>
-								</select>
-							</div>
-						</div>
+						</div> --}}
 					</div>
 					<div class="row">
 						<div class="col-md-4">

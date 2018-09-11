@@ -35,7 +35,6 @@
 					<thead>
 						<tr>
 							<th></th>
-							<th>Foto</th>
 							<th>Nomor KTP</th>
 							<th>Nama Lengkap</th>
 							<th>Pengikut</th>
@@ -46,7 +45,6 @@
 						@foreach($data as $item)
 						<tr>
 							<td></td>
-							<td><img src="{{url($item->foto)}}" alt="" class="rounded"></td>
 							<td>{{$item->no_ktp}}</td>
 							<td>{{$item->name}}</td>
 							<td>{{$item->downline}} Pengikut</td>

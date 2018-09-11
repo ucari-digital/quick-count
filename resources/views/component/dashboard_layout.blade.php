@@ -20,6 +20,7 @@
         <link rel="stylesheet" href="{{url('vendor/select2/css/select2.min.css')}}"> <!-- original select2 plugin styles -->
         <link rel="stylesheet" href="{{url('vendor/bootstrap/css/bootstrap.min.css')}}"> <!-- original bootstrap styles -->
         <link rel="stylesheet" href="{{url('css/style.min.css')}}" id="stylesheet"> <!-- universeadmin styles -->
+        <link rel="stylesheet" href="{{url('vendor/datatables/datatables.min.css')}}" id="stylesheet">
         <style type="text/css">
             input[type="file"].form-control{
                 height: 40px;
@@ -142,9 +143,11 @@
     <script src="{{url('vendor/wnumb/wNumb.js')}}"></script>
     <script src="{{url('js/main.js')}}"></script>
     <script src="{{url('vendor/sparkline/jquery.sparkline.min.js')}}"></script>
+    <script src="{{url('vendor/datatables/datatables.min.js')}}"></script>
+    <script src="{{url('js/preview/datatables.js')}}"></script>
     <script src="{{url('js/preview/sales-dashboard.min.js')}}"></script>
     <script src="https://unpkg.com/imask"></script>
-    <script type="text/javascript">
+    {{-- <script type="text/javascript">
         document.addEventListener("DOMContentLoaded", function () {
             var dateMask = new IMask(
                 document.getElementById('date-mask'),
@@ -156,7 +159,7 @@
                 }
             );
         });
-    </script>
+    </script> --}}
     @yield('footer')
     <div class="slide-nav">
         <div class="slide-nav__header">

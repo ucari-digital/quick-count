@@ -17,12 +17,8 @@ $auth = App\Helper\Lib::auth();
 </div>
 <div class="row">
 	<div class="col-md-12">
-		@if(session('status') == 'success')
-			<div class="alert alert-success" role="alert">
-				{{session('message')}}
-			</div>
-		@elseif(session('status') == 'failed')
-			<div class="alert alert-danger" role="alert">
+		@if(session('status'))
+			<div class="alert" role="alert" style="background-color: #616161; border-color: #616161;">
 				{{session('message')}}
 			</div>
 		@endif

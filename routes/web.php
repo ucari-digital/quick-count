@@ -75,6 +75,7 @@ Route::middleware(['anggota'])->group(function(){
 		Route::post('/submit', 'Relawan\RelawanController@submit');
 		Route::get('/edit/{anggota_id}', 'Relawan\RelawanController@edit');
 		Route::post('/update/{anggota_id}', 'Relawan\RelawanController@update');
+		Route::post('/search', 'Relawan\RelawanController@relawanSearch');
 	});
 
 	Route::prefix('pemilih')->group(function(){

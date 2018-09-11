@@ -75,7 +75,8 @@ class RelawanController extends Controller
         }
 
         $kota = Kota::whereIn('id', GSController::cityAvailabel())->get();
-    	return view('relawan.data-relawan', compact('data', 'kota'));
+        $provinsi = Provinsi::all();
+    	return view('relawan.data-relawan', compact('data', 'kota', 'provinsi'));
     }
 
     public function create()
@@ -162,5 +163,66 @@ class RelawanController extends Controller
         } catch (\Exception $e) {
             return $e->getMessage();    
         }
+    }
+
+    public function relawanSearch(Request $request)
+    {
+        // return $request;
+        $auth = Lib::auth();
+        $anggota = Anggota::when($request->nama, function($query) use ($request){
+            return $query->where('name', 'like', '%'.$request->nama.'%');  
+        })
+        ->when($request->email, function($query) use ($request){
+            return $query->where('email', 'like',  '%'.$request->email.'%');
+        })
+        ->when($request->jk, function($query) use ($request){
+            return $query->where('jk', $request->jk);
+        })
+        ->when($request->provinsi, function($query) use ($request){
+            return $query->where('provinsi', $request->provinsi);
+        })
+        ->when($request->kecamatan, function($query) use ($request){
+            return $query->where('kecamatan', $request->kecamatan);
+        })
+        ->when($request->kabkota, function($query) use ($request){
+            return $query->where('kabkota', $request->kabkota);
+        })
+        ->when($request->kelurahan, function($query) use ($request){
+            return $query->where('kelurahan', $request->kelurahan);
+        })
+        ->when($request->rt, function($query) use ($request){
+            return $query->where('rtrw', 'like', $request->rt.'%');
+        })
+        ->when($request->rw, function($query) use ($request){
+            return $query->where('rtrw', 'like', '%'.$request->rw);
+        })
+        ->where('role', 'relawan')
+        ->where('referred_by', $auth->anggota_id)
+        ->where('group_id', $auth->group_id)
+        ->get();
+
+
+        if ($auth->role == 'superadmin') {
+            $data_anggota = Anggota::where('posisi', 'relawan')->where('role', 'relawan')->get();
+        } else {
+            $data_anggota = $anggota;
+        }
+
+        if ($request->saksi) {
+            $data_anggota = Anggota::where('posisi', 'saksi')
+            ->where('group_id', Lib::auth()->group_id)
+            ->where('role', 'relawan')
+            ->get();
+        }
+
+        $data = [];
+        foreach ($data_anggota as $numb => $item) {
+            $data[$numb] = $item;
+            $data[$numb]['downline'] = Anggota::where('referred_by', $item->anggota_id)->where('role', 'pemilih')->count();
+        }
+
+        $kota = Kota::whereIn('id', GSController::cityAvailabel())->get();
+        $provinsi = Provinsi::all();
+        return view('relawan.data-relawan', compact('data', 'kota', 'provinsi'));
     }
 }
