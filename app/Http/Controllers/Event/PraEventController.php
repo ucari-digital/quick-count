@@ -69,7 +69,7 @@ class PraEventController extends Controller
 	    	$kandidat = [];
 	    	foreach ($kandidat_data as $numbc => $items) {
 	    		$kandidat[$numbc]['name'] = $items->name;
-	    		$kandidat[$numbc]['suara'] = Anggota::where('group_id', Lib::auth()->group_id)->where('kabkota', $item->id)->where('kandidat_id', $items->id)->count();
+	    		$kandidat[$numbc]['suara'] = Anggota::where('kabkota', $item->id)->where('kandidat_id', $items->id)->count();
 	    	}
 
 	    	$Kandidat_sorted = array_values(array_sort($kandidat, function ($value) {
@@ -92,7 +92,6 @@ class PraEventController extends Controller
 			}
     		$data[$numb]['chart'] = $kandidat_chart;
     	}
-        // return $data;
     	return view('event.pra-event', compact('data', 'title', 'button_url', 'button_text'));
     }
 

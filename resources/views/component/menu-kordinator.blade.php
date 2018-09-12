@@ -13,6 +13,12 @@
         </a>
     </li>
     <li class="sidebar-section-nav__item">
+        <a class="sidebar-section-nav__link" href="{{url('kandidat')}}">
+            <span class="sidebar-section-nav__item-icon mdi mdi-account-check"></span>
+            <span class="sidebar-section-nav__item-text">Data Kandidat</span>
+        </a>
+    </li>
+    <li class="sidebar-section-nav__item">
         <a class="sidebar-section-nav__link sidebar-section-nav__link-dropdown" href="#">
             <span class="sidebar-section-nav__item-icon mdi mdi-ray-start"></span>
             <span class="sidebar-section-nav__item-text">Pra Event</span>
@@ -48,18 +54,6 @@
         <a class="sidebar-section-nav__link" href="{{url('kordinator/dl/'.$auth->anggota_id)}}">
             <span class="sidebar-section-nav__item-icon mdi mdi-account-multiple-plus"></span>
             <span class="sidebar-section-nav__item-text">Anggota</span>
-        </a>
-    </li>
-    <li class="sidebar-section-nav__item">
-        <a class="sidebar-section-nav__link" href="{{url('kandidat')}}">
-            <span class="sidebar-section-nav__item-icon mdi mdi-account-check"></span>
-            <span class="sidebar-section-nav__item-text">Data Kandidat</span>
-        </a>
-    </li>
-    <li class="sidebar-section-nav__item">
-        <a class="sidebar-section-nav__link" href="{{url('dpt')}}">
-            <span class="sidebar-section-nav__item-icon mdi mdi-book-open"></span>
-            <span class="sidebar-section-nav__item-text">Data DPT</span>
         </a>
     </li>
     <li class="sidebar-section-nav__item">

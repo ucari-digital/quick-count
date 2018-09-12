@@ -65,7 +65,7 @@ $auth = App\Helper\Lib::auth();
 								<input type="file" name="bukti" class="form-control u{{$item->id}}" onchange="bukti('{{$item->no_ktp}}', '{{$item->group_id}}', 'u{{$item->id}}', this.value);">
 							</td>
 							<td>
-								<img src="{{url(''.$item->bukti)}}" class="rounded">
+								<img src="{{url(''.$item->bukti)}}" class="rounded" style="width: 40px;">
 							</td>
 						</tr>
 						@endforeach

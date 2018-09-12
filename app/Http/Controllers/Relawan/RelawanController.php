@@ -17,38 +17,26 @@ class RelawanController extends Controller
 {
     public function relawan()
     {
-        $data = Anggota::where('referred_by', Lib::auth()->anggota_id)->where('role', 'relawan')->count();
-        $total_pemilih  = Anggota::where('role', 'pemilih')->count();
+        $auth = Lib::auth();
+        $total_relawan = Anggota::where('group_id', $auth->group_id)->where('role', 'relawan')->count();
+        $total_saksi  = Anggota::where('group_id', $auth->group_id)->where('posisi', 'saksi')->count();
 
-        // Mengambil jumlah pemilih laki2 dan perempuan
 
-        $perempuan = Anggota::where('group_id', Lib::auth()->group_id)->where('posisi', 'pemilih')->where('jk', 'P')->count();
-        $laki = Anggota::where('group_id', Lib::auth()->group_id)->where('posisi', 'pemilih')->where('jk', 'L')->count();
-        // --------------------------------------------
-
-        $pemilih = [
-            'perempuan' => $perempuan,
-            'laki' => $laki
-        ];
-
-        $daerah_counter = Anggota::where('group_id', Lib::auth()->group_id)->where('posisi', 'pemilih')->get();
-
-        $data_daerah_dumperdata_daerah_dumper = [];
-        foreach ($daerah_counter as $numb => $item) {
-            $data_daerah_dumper[$item->kecamatan]['kecamatan'] = $item->kecamatan;
-            $data_daerah_dumper[$item->kecamatan]['counter'][] = $numb;
+        if ($auth->role == 'superadmin') {
+            $data_anggota = Anggota::where('group_id', $auth->group_id)->where('posisi', 'relawan')->where('role', 'relawan')->get();
+        } else {
+            $data_anggota = Anggota::where('group_id', $auth->group_id)->where('role', 'relawan')->get();
         }
 
-        $daerah = [];
-        foreach ($data_daerah_dumper as $item) {
-            $daerah['daerah'][] = $item['kecamatan'];
-            $daerah['counter'][] = count($item['counter']);
+        $data = [];
+        foreach ($data_anggota as $numb => $item) {
+            $data[$numb] = $item;
+            $data[$numb]['downline'] = Anggota::where('group_id', $auth->group_id)->where('referred_by', $item->anggota_id)->where('role', 'pemilih')->count();
         }
 
-        // return $daerah;
-        // return $data_daerah_dumper;
+        $provinsi = Provinsi::all();
 
-        return view('relawan.relawan', compact('data', 'total_pemilih', 'pemilih', 'daerah'));
+        return view('relawan.relawan', compact('data', 'total_saksi', 'total_relawan', 'provinsi'));
     }
 
     public function index(Request $request)
@@ -56,9 +44,9 @@ class RelawanController extends Controller
         $auth = Lib::auth();
 
         if ($auth->role == 'superadmin') {
-            $data_anggota = Anggota::where('posisi', 'relawan')->where('role', 'relawan')->get();
+            $data_anggota = Anggota::where('group_id', $auth->group_id)->where('posisi', 'relawan')->where('role', 'relawan')->get();
         } else {
-            $data_anggota = Anggota::where('referred_by', $auth->anggota_id)->where('role', 'relawan')->get();
+            $data_anggota = Anggota::where('group_id', $auth->group_id)->where('role', 'relawan')->get();
         }
 
         if ($request->saksi) {
@@ -196,8 +184,10 @@ class RelawanController extends Controller
         ->when($request->rw, function($query) use ($request){
             return $query->where('rtrw', 'like', '%'.$request->rw);
         })
+        ->when($request->role, function($query) use ($request){
+            return $query->where('posisi', $request->role);
+        })
         ->where('role', 'relawan')
-        ->where('referred_by', $auth->anggota_id)
         ->where('group_id', $auth->group_id)
         ->get();
 

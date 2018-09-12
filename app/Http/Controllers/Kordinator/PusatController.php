@@ -18,14 +18,14 @@ class PusatController extends Controller
         public function index()
     {
     	$data_pusat = Anggota::where('posisi', 'pusat')->get();
-
+        $provinsi = Provinsi::all();
         $data = [];
         foreach ($data_pusat as $numb => $item) {
             $data[$numb] = $item;
             $data[$numb]['downline'] = Anggota::where('referred_by', $item->anggota_id)->where('role', 'kordinator')->count();
         }
 
-    	return view('kordinator.pusat.pusat', compact('data'));
+    	return view('kordinator.pusat.pusat', compact('data', 'pusat', 'provinsi'));
     }
 
     public function create()
@@ -102,9 +102,23 @@ class PusatController extends Controller
 
 	    	return redirect('kordinator/pusat/edit/'.$anggota_id)
 	    	->with('status', 'success')
-	    	->with('message', 'Berhasil mendaftarkan anggota');
+	    	->with('message', 'Berhasil mengubah data');
     	} catch (\Exception $e) {
     		return $e->getMessage();	
     	}
+    }
+
+    public function advSearch(Request $request)
+    {
+        $request['posisi'] = 'pusat';
+        $data_kabkota = GSController::advancedSearch($request, 'kordinator');
+        $provinsi = Provinsi::all();
+        $data = [];
+        foreach ($data_kabkota as $numb => $item) {
+            $data[$numb] = $item;
+            $data[$numb]['downline'] = Anggota::where('referred_by', $item->anggota_id)->where('role', 'kordinator')->count();
+        }
+
+        return view('kordinator.pusat.pusat', compact('data', 'provinsi'));
     }
 }

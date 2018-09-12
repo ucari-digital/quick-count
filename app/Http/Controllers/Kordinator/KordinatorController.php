@@ -53,6 +53,13 @@ class KordinatorController extends Controller
             $t_relawan['value'][] = $to_relawan['value'];
         }
 
+        /* Handle Value For Null value */
+        
+
+        if (empty($t_relawan)) {
+            $t_relawan['name'][] = '';
+            $t_relawan['value'][] = '';
+        }
 
     	return view('kordinator.kordinator', compact('kabkota', 'kecamatan', 'kelurahan', 'rtrw', 'saksi', 'relawan', 'pemilih', 'caleg', 'saksi', 't_relawan'));
     }

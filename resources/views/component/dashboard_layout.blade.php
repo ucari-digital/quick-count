@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="keywords" content="">
-        <title>Sales Dashboard / Universe Admin</title>
+        <title>@yield('title')</title>
         <link rel="shortcut icon" href="img/favicon.png">
         
         <link rel="stylesheet" href="{{url('fonts/open-sans/style.min.css')}}"> <!-- common font  styles  -->
@@ -147,10 +147,11 @@
     <script src="{{url('js/preview/datatables.js')}}"></script>
     <script src="{{url('js/preview/sales-dashboard.min.js')}}"></script>
     <script src="https://unpkg.com/imask"></script>
-    {{-- <script type="text/javascript">
-        document.addEventListener("DOMContentLoaded", function () {
+    <script type="text/javascript">
+        var el = document.getElementById('date-mask');
+        if (el) {
             var dateMask = new IMask(
-                document.getElementById('date-mask'),
+                el,
                 {
                     mask: Date,
                     min: new Date(1900, 0, 1),
@@ -158,8 +159,45 @@
                     lazy: false
                 }
             );
+        }
+        $('.provinsi').change(function(){
+        $('.kabkota').html('');
+        $('.kabkota').append($("<option></option>").attr("value", "").text('PILIH'));
+            $.get('{{url('kota')}}/'+$(this).val(), function(data){
+                $.each(data, function(key, value) {  
+                    console.log(value);
+                    $('.kabkota')
+                    .append($("<option></option>")
+                        .attr("value",value.id)
+                        .text(value.name)); 
+                });
+            });
         });
-    </script> --}}
+        $('.kabkota').change(function(){
+            $('.kecamatan').html('');
+            $('.kecamatan').append($("<option></option>").attr("value", "").text('PILIH'));
+            $.get('{{url('kecamatan')}}/'+$(this).val(), function(data){
+                $.each(data, function(key, value) {  
+                    $('.kecamatan')
+                    .append($("<option></option>")
+                        .attr("value",value.id)
+                        .text(value.name)); 
+                });
+            });
+        });
+        $('.kecamatan').change(function(){
+            $('.kelurahan').html('');
+            $('.kelurahan').append($("<option></option>").attr("value", "").text('PILIH'));
+            $.get('{{url('kelurahan')}}/'+$(this).val(), function(data){
+                $.each(data, function(key, value) {  
+                    $('.kelurahan')
+                    .append($("<option></option>")
+                        .attr("value",value.id)
+                        .text(value.name)); 
+                });
+            });
+        });
+    </script>
     @yield('footer')
     <div class="slide-nav">
         <div class="slide-nav__header">

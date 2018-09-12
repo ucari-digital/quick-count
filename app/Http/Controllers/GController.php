@@ -55,7 +55,7 @@ class GController extends Controller
 
             return redirect()->back()
             ->with('status', 'success')
-            ->with('message', 'Berhasil mendaftarkan anggota');
+            ->with('message', 'Berhasil mengubah data');
         } catch (\Exception $e) {
             return $e->getMessage();    
         }

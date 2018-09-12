@@ -105,6 +105,6 @@ class DPTController extends Controller
     		}
     	});
 
-    	return (array) $data;
+        return redirect()->back();
     }
 }

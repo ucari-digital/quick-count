@@ -14,6 +14,7 @@ use App\Model\Kecamatan;
 use App\Model\Kelurahan;
 use App\Model\Kandidat;
 use App\Model\QuicCount;
+use App\Model\Saksi;
 
 use App\Http\Controllers\GSController;
 class PendataanController extends Controller
@@ -112,8 +113,14 @@ class PendataanController extends Controller
 
     public function praEventInput()
     {
+        $auth = Lib::auth();
         $kandidat = Kandidat::where('group_id', Lib::auth()->group_id)->get();
-    	$data = Anggota::where('referred_by', Lib::auth()->anggota_id)->where('role', 'pemilih')->get();
+        $get_tps = Saksi::where('anggota_id', $auth->anggota_id)->first();
+    	$data = Anggota::where('kabkota', $get_tps->kabkota)
+        ->where('kecamatan', $get_tps->kecamatan)
+        ->where('kelurahan', $get_tps->kelurahan)
+        ->where('tps', $get_tps->tps)
+        ->where('role', 'pemilih')->get();
     	return view('event.input.pra-event', compact('data', 'kandidat'));
     }
 
@@ -124,19 +131,17 @@ class PendataanController extends Controller
         		$file = Storage::disk('public')->put('images/bukti', $request->bukti);
     			$file_name = Storage::url($file);
             } else {
-                $file_name = Anggota::where('no_ktp', $request->no_ktp)->where('group_id', $request->group_id)->first()->bukti;
+                $file_name = Anggota::where('no_ktp', $request->no_ktp)->first()->bukti;
             }
 
             if ($request->kandidat) {
                 $data = Anggota::where('no_ktp', $request->no_ktp)
-                ->where('group_id', $request->group_id)
                 ->update([
                     'kandidat_id' => $request->kandidat,
                     'bukti' => $file_name
                 ]);
             } else {
                 $data = Anggota::where('no_ktp', $request->no_ktp)
-                ->where('group_id', $request->group_id)
                 ->update([
                     'bukti' => $file_name
                 ]);

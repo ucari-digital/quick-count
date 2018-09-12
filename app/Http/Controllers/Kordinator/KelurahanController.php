@@ -20,13 +20,13 @@ class KelurahanController extends Controller
     public function index()
     {
     	$data_kelurahan = Anggota::where('posisi', 'kelurahan')->get();
-
+        $provinsi = Provinsi::all();
         $data = [];
         foreach ($data_kelurahan as $numb => $item) {
             $data[$numb] = $item;
             $data[$numb]['downline'] = Anggota::where('referred_by', $item->anggota_id)->where('role', 'kordinator')->count();
         }
-    	return view('kordinator.kelurahan.kelurahan', compact('data'));
+    	return view('kordinator.kelurahan.kelurahan', compact('data', 'provinsi'));
     }
 
     public function create()
@@ -102,9 +102,23 @@ class KelurahanController extends Controller
 
 	    	return redirect('kordinator/kelurahan/edit/'.$anggota_id)
 	    	->with('status', 'success')
-	    	->with('message', 'Berhasil mendaftarkan anggota');
+	    	->with('message', 'Berhasil mengubah data');
     	} catch (\Exception $e) {
     		return $e->getMessage();	
     	}
+    }
+
+    public function advSearch(Request $request)
+    {
+        $request['posisi'] = 'kelurahan';
+        $data_kabkota = GSController::advancedSearch($request, 'kordinator');
+        $provinsi = Provinsi::all();
+        $data = [];
+        foreach ($data_kabkota as $numb => $item) {
+            $data[$numb] = $item;
+            $data[$numb]['downline'] = Anggota::where('referred_by', $item->anggota_id)->where('role', 'kordinator')->count();
+        }
+
+        return view('kordinator.kelurahan.add-kelurahan', compact('data', 'provinsi'));
     }
 }

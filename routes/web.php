@@ -41,6 +41,7 @@ Route::middleware(['anggota'])->group(function(){
 			Route::post('/create/submit', 'Kordinator\KabKotaController@submit');
 			Route::get('/edit/{anggota_id}', 'Kordinator\KabKotaController@edit');
 			Route::post('/update/{anggota_id}', 'Kordinator\KabKotaController@update');
+			Route::post('/search', 'Kordinator\KabKotaController@advSearch');
 		});
 
 		Route::prefix('kecamatan')->group(function(){
@@ -49,6 +50,7 @@ Route::middleware(['anggota'])->group(function(){
 			Route::post('/create/submit', 'Kordinator\KecamatanController@submit');
 			Route::get('/edit/{anggota_id}', 'Kordinator\KecamatanController@edit');
 			Route::post('/update/{anggota_id}', 'Kordinator\KecamatanController@update');
+			Route::post('/search', 'Kordinator\KecamatanController@advSearch');
 		});
 
 		Route::prefix('kelurahan')->group(function(){
@@ -57,6 +59,7 @@ Route::middleware(['anggota'])->group(function(){
 			Route::post('/create/submit', 'Kordinator\KelurahanController@submit');
 			Route::get('/edit/{anggota_id}', 'Kordinator\KelurahanController@edit');
 			Route::post('/update/{anggota_id}', 'Kordinator\KelurahanController@update');
+			Route::post('/search', 'Kordinator\KelurahanController@advSearch');
 		});
 
 		Route::prefix('pusat')->group(function(){
@@ -65,6 +68,7 @@ Route::middleware(['anggota'])->group(function(){
 			Route::post('/create/submit', 'Kordinator\PusatController@submit');
 			Route::get('/edit/{anggota_id}', 'Kordinator\PusatController@edit');
 			Route::post('/update/{anggota_id}', 'Kordinator\PusatController@update');
+			Route::post('/search', 'Kordinator\PusatController@advSearch');
 		});
 	});
 
@@ -104,6 +108,9 @@ Route::middleware(['anggota'])->group(function(){
 		Route::get('/anggota/{id}', 'DPT\DPTController@anggota');
 		Route::get('/import', 'DPT\DPTController@import');
 		Route::post('/upload', 'DPT\DPTController@upload');
+		Route::get('/download', function(){
+			return response()->download('storage/excel-template/Template-DPT.xlsx');
+		});
 	});
 
 	Route::prefix('event')->group(function(){

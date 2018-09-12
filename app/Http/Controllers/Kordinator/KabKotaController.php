@@ -14,6 +14,7 @@ use App\Model\Provinsi;
 
 use App\Helper\TimeFormat;
 use App\Helper\Lib;
+use App\Http\Controllers\GSController;
 class KabKotaController extends Controller
 {
     public function index(Request $request)
@@ -26,9 +27,8 @@ class KabKotaController extends Controller
             $data[$numb]['downline'] = Anggota::where('referred_by', $item->anggota_id)->where('role', 'kordinator')->count();
         }
 
-        // return $data;
-
-    	return view('kordinator.kabkota.kabkota', compact('data'));
+        $provinsi = Provinsi::all();
+    	return view('kordinator.kabkota.kabkota', compact('data', 'provinsi'));
     }
 
     public function create()
@@ -103,9 +103,23 @@ class KabKotaController extends Controller
 
 	    	return redirect('kordinator/kabkota/edit/'.$anggota_id)
 	    	->with('status', 'success')
-	    	->with('message', 'Berhasil mendaftarkan anggota');
+	    	->with('message', 'Berhasil mengubah data');
     	} catch (\Exception $e) {
     		return $e->getMessage();	
     	}
+    }
+
+    public function advSearch(Request $request)
+    {
+        $request['posisi'] = 'kabkota';
+        $data_kabkota = GSController::advancedSearch($request, 'kordinator');
+        $provinsi = Provinsi::all();
+        $data = [];
+        foreach ($data_kabkota as $numb => $item) {
+            $data[$numb] = $item;
+            $data[$numb]['downline'] = Anggota::where('referred_by', $item->anggota_id)->where('role', 'kordinator')->count();
+        }
+
+        return view('kordinator.kabkota.kabkota', compact('data', 'provinsi'));
     }
 }

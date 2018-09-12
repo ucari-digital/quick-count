@@ -23,7 +23,7 @@ $auth = App\Helper\Lib::auth();
 </div>
 @endsection
 @section('content')
-<div class="row">
+<div class="row mb-4">
 	<div class="col-md-12">
 		<div class="card">
 			<div class="card-body">
@@ -43,7 +43,7 @@ $auth = App\Helper\Lib::auth();
 	        datasets: [{
 	            label: '# Jumlah Pemilih',
 	            data: {!! App\Helper\Lib::array2string($data['suara']) !!},
-	            backgroundColor: {!! App\Helper\Lib::array2string($data['color'], true) !!},
+	            backgroundColor: {!! App\Helper\Lib::color(6) !!},
 	            borderWidth: 1
 	        }]
 	    },

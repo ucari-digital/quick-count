@@ -116,6 +116,16 @@ $auth = App\Helper\Lib::auth();
 								<input name="rw" type="text" class="form-control" placeholder="RW">
 							</div>
 						</div>
+						<div class="col-md-2">
+							<div class="form-group">
+								<label>Role</label>
+								<select name="role" class="form-control">
+									<option value="">PILIH</option>
+									<option value="saksi">Saksi</option>
+									<option value="relawan">Relawan</option>
+								</select>
+							</div>
+						</div>
 					</div>
 					<div class="row justify-content-end">
 						<div class="col-md-2">
@@ -133,18 +143,18 @@ $auth = App\Helper\Lib::auth();
 			<table class="table table-striped dtable-r">
 			<thead>
 				<tr>
-					<th></th>
 					<th>Nomor KTP</th>
 					<th>Nama Lengkap</th>
 					<th>No. HP</th>
 					<th>Sebagai Saksi</th>
+					@if($auth->role != 'relawan')
 					<th>Aksi</th>
+					@endif
 				</tr>
 			</thead>
 			<tbody>
 				@foreach($data as $item)
 				<tr>
-					<td></td>
 					<td>{{$item->no_ktp}}</td>
 					<td>{{$item->name}}</td>
 					<td>{{$item->no_hp}}</td>
@@ -153,6 +163,7 @@ $auth = App\Helper\Lib::auth();
 					@else
 					<td>Tidak</td>
 					@endif
+					@if($auth->role != 'relawan')
 					<td>
 						<div class="btn-group">
 							<button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -181,6 +192,7 @@ $auth = App\Helper\Lib::auth();
 							</div>
 						</div>
 					</td>
+					@endif
 				</tr>
 				@endforeach
 			</tbody>

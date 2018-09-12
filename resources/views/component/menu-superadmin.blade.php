@@ -6,6 +6,12 @@
         </a>
     </li>
     <li class="sidebar-section-nav__item">
+        <a class="sidebar-section-nav__link" href="{{url('dpt')}}">
+            <span class="sidebar-section-nav__item-icon mdi mdi-book-open"></span>
+            <span class="sidebar-section-nav__item-text">Data DPT</span>
+        </a>
+    </li>
+    <li class="sidebar-section-nav__item">
         <a class="sidebar-section-nav__link sidebar-section-nav__link-dropdown" href="#">
             <span class="sidebar-section-nav__item-icon mdi mdi-account-star"></span>
             <span class="sidebar-section-nav__item-text">Kordinator</span>

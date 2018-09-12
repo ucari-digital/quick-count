@@ -22,15 +22,6 @@
         <script src="{{url('js/ie.assign.fix.min.js')}}"></script>
     </head>
     <body class="p-front">
-        @if(session('status') == 'success')
-        <div class="alert alert-success" role="alert">
-            {{session('message')}}
-        </div>
-        @elseif(session('status') == 'failed')
-        <div class="alert alert-danger" role="alert">
-            {{session('message')}}
-        </div>
-        @endif
         <div class="navbar navbar-light navbar-expand-lg p-front__navbar"> <!-- is-dark -->
             <a class="navbar-brand" href="/"><img src="img/logo.png" alt=""/></a>
             <a class="navbar-brand-sm" href="/"><img src="img/logo-sm.png" alt=""/></a>
@@ -54,6 +45,15 @@
         <div class="p-front__content">
             <div class="p-signin-a">
                 <form action="{{url('login/submit')}}" method="post" class="p-signin-a__form">
+                    @if(session('status') == 'success')
+                    <div class="alert alert-success" role="alert">
+                        {{session('message')}}
+                    </div>
+                    @elseif(session('status') == 'failed')
+                    <div class="alert alert-danger" role="alert">
+                        {{session('message')}}
+                    </div>
+                    @endif
                     @csrf
                     <h4 class="p-signin-a__form-heading">Sign In</h4>
                     <p class="p-signin-a__form-description">
