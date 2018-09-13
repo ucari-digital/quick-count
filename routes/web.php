@@ -31,6 +31,8 @@ Route::middleware(['anggota'])->group(function(){
 
 	Route::prefix('kordinator')->group(function(){
 		Route::get('/', 'Kordinator\KordinatorController@kordinator');
+		Route::get('/all', 'Kordinator\KordinatorController@all');
+		Route::post('/all/search', 'Kordinator\KordinatorController@advSearch');
 		Route::get('/dl/{anggota_id}', 'Kordinator\KordinatorController@downline');
 		Route::get('create', 'Kordinator\KordinatorController@create');
 		Route::post('submit', 'Kordinator\KordinatorController@submit');

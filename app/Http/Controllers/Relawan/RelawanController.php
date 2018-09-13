@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\GSController;
 use Hash;
+use Carbon\Carbon;
 use App\Model\Anggota;
 use App\Model\Provinsi;
 use App\Model\Kota;
@@ -20,6 +21,8 @@ class RelawanController extends Controller
         $auth = Lib::auth();
         $total_relawan = Anggota::where('group_id', $auth->group_id)->where('role', 'relawan')->count();
         $total_saksi  = Anggota::where('group_id', $auth->group_id)->where('posisi', 'saksi')->count();
+        $total_relawan_p = Anggota::where('group_id', $auth->group_id)->where('role', 'relawan')->where('jk', 'P')->count();
+        $total_relawan_l = Anggota::where('group_id', $auth->group_id)->where('role', 'relawan')->where('jk', 'L')->count();
 
 
         if ($auth->role == 'superadmin') {
@@ -36,7 +39,34 @@ class RelawanController extends Controller
 
         $provinsi = Provinsi::all();
 
-        return view('relawan.relawan', compact('data', 'total_saksi', 'total_relawan', 'provinsi'));
+        // Chart
+        $day = Anggota::get()->groupBy(function($date){
+            return Carbon::parse($date->created_at)->format('h');
+        });
+        $days = [];
+        $status = '';
+        for ($i=0; $i < 13; $i++) { 
+            if ($i < 11) {
+                $x = '0'.$i;
+            } else {
+                $x = ''.$i;
+            }
+
+            $status = false;
+            foreach ($day as $numbday => $itemday) {
+                if ($x == $numbday) {
+                    $days['value'][] = count($itemday);
+                    $days['time'][] = ''.$numbday.':00';
+                    $status = true;
+                }
+            }
+            if ($status == false) {
+                $days['value'][] = 0;
+                $days['time'][] = $x.':00';
+            }
+        }
+
+        return view('relawan.relawan', compact('data', 'total_saksi', 'total_relawan', 'total_relawan_l', 'total_relawan_p', 'provinsi', 'days'));
     }
 
     public function index(Request $request)

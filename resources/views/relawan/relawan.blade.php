@@ -14,7 +14,7 @@ Relawan
 	<div class="col-md-3">
 		<div class="widget widget-alpha widget-alpha--color-amaranth">
 			<div>
-				<div class="widget-alpha__amount">{{$total_relawan}}</div>
+				<div class="widget-alpha__amount">{{$total_relawan_l}}</div>
 				<div class="widget-alpha__description">Relawan Laki-Laki</div>
 			</div>
 			<span class="widget-alpha__icon ua-icon-widget-user"></span>
@@ -23,7 +23,7 @@ Relawan
 	<div class="col-md-3">
 		<div class="widget widget-alpha widget-alpha--color-green-jungle">
 			<div>
-				<div class="widget-alpha__amount">{{$total_relawan}}</div>
+				<div class="widget-alpha__amount">{{$total_relawan_p}}</div>
 				<div class="widget-alpha__description">Relawan Perempuan</div>
 			</div>
 			<span class="widget-alpha__icon ua-icon-widget-user"></span>
@@ -41,7 +41,7 @@ Relawan
 	<div class="col-md-3">
 		<div class="widget widget-alpha widget-alpha--color-java">
 			<div>
-				<div class="widget-alpha__amount">{{$total_saksi}}</div>
+				<div class="widget-alpha__amount">{{$total_relawan}}</div>
 				<div class="widget-alpha__description">Jumlah Relawan</div>
 			</div>
 			<span class="widget-alpha__icon ua-icon-widget-user"></span>
@@ -143,27 +143,11 @@ Relawan
 	var myChart = new Chart(ctx, {
 	    type: 'line',
 	    data: {
-	        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+	        labels:  {!! App\Helper\Lib::array2string($days['time'], true) !!},
 	        datasets: [{
 	            label: '# of Votes',
-	            data: [12, 19, 3, 5, 2, 3],
-	            backgroundColor: [
-	                'rgba(255, 99, 132, 0.2)',
-	                'rgba(54, 162, 235, 0.2)',
-	                'rgba(255, 206, 86, 0.2)',
-	                'rgba(75, 192, 192, 0.2)',
-	                'rgba(153, 102, 255, 0.2)',
-	                'rgba(255, 159, 64, 0.2)'
-	            ],
-	            borderColor: [
-	                'rgba(255,99,132,1)',
-	                'rgba(54, 162, 235, 1)',
-	                'rgba(255, 206, 86, 1)',
-	                'rgba(75, 192, 192, 1)',
-	                'rgba(153, 102, 255, 1)',
-	                'rgba(255, 159, 64, 1)'
-	            ],
-	            borderWidth: 1
+	            data: {!! App\Helper\Lib::array2string($days['value']) !!},
+	            backgroundColor: 'rgba(255, 99, 132, 0.2)',
 	        }]
 	    },
 	    options: {

@@ -18,7 +18,7 @@
             <span class="sidebar-section-nav__item-text">Koordinator</span>
         </a>
         <ul class="sidebar-section-subnav">
-            <li class="sidebar-section-subnav__item"><a class="sidebar-section-subnav__link" href="{{url('kordinator/pusat')}}">Semua Koordinator</a></li>
+            <li class="sidebar-section-subnav__item"><a class="sidebar-section-subnav__link" href="{{url('kordinator/all')}}">Semua Koordinator</a></li>
             <li class="sidebar-section-subnav__item"><a class="sidebar-section-subnav__link" href="{{url('kordinator/kabkota')}}">Kabupaten / Kota</a></li>
             <li class="sidebar-section-subnav__item"><a class="sidebar-section-subnav__link" href="{{url('kordinator/kecamatan')}}">Kecamatan</a></li>
             <li class="sidebar-section-subnav__item"><a class="sidebar-section-subnav__link" href="{{url('kordinator/kelurahan')}}">Kelurahan</a></li>
@@ -53,7 +53,7 @@
             <span class="sidebar-section-nav__item-text">Setting</span>
         </a>
         <ul class="sidebar-section-subnav">
-            <li class="sidebar-section-subnav__item"><a class="sidebar-section-subnav__link" href="{{url('Kandidat')}}">Data Caleg Partai</a></li>
+            <li class="sidebar-section-subnav__item"><a class="sidebar-section-subnav__link" href="{{url('kandidat')}}">Data Caleg Partai</a></li>
             <li class="sidebar-section-subnav__item"><a class="sidebar-section-subnav__link" href="{{url('dpt')}}">Import DPT</a></li>
             <li class="sidebar-section-subnav__item"><a class="sidebar-section-subnav__link" href="{{url('slide-show')}}">Slide Show</a></li>
             <li class="sidebar-section-subnav__item"><a class="sidebar-section-subnav__link" href="{{url('slide-show')}}">Target Relawan & Saksi</a></li>

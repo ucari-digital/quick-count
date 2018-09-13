@@ -64,6 +64,21 @@ class KordinatorController extends Controller
     	return view('kordinator.kordinator', compact('kabkota', 'kecamatan', 'kelurahan', 'rtrw', 'saksi', 'relawan', 'pemilih', 'caleg', 'saksi', 't_relawan'));
     }
 
+    public function all(Request $request)
+    {
+        $auth = Lib::auth();
+        $data_anggota = Anggota::where('group_id', $auth->group_id)->where('role', 'kordinator')->get();
+
+        $data = [];
+        foreach ($data_anggota as $numb => $item) {
+            $data[$numb] = $item;
+            $data[$numb]['downline'] = Anggota::where('referred_by', $item->anggota_id)->where('role', 'kordinator')->count();
+        }
+
+        $provinsi = Provinsi::all();
+        return view('kordinator.all', compact('data', 'provinsi'));
+    }
+
     public function kabkot()
     {
     	return view('kordinator.kabkota.kabkota');
@@ -121,5 +136,18 @@ class KordinatorController extends Controller
         } catch (\Exception $e) {
             
         }
+    }
+
+    public function advSearch(Request $request)
+    {
+        $data_kabkota = GSController::advancedSearch($request, 'kordinator');
+        $provinsi = Provinsi::all();
+        $data = [];
+        foreach ($data_kabkota as $numb => $item) {
+            $data[$numb] = $item;
+            $data[$numb]['downline'] = Anggota::where('referred_by', $item->anggota_id)->where('role', 'kordinator')->count();
+        }
+
+        return view('kordinator.all', compact('data', 'provinsi'));
     }
 }
