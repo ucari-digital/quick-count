@@ -80,6 +80,16 @@ Route::middleware(['anggota'])->group(function(){
 		Route::get('/edit/{anggota_id}', 'Relawan\RelawanController@edit');
 		Route::post('/update/{anggota_id}', 'Relawan\RelawanController@update');
 		Route::post('/search', 'Relawan\RelawanController@relawanSearch');
+		Route::prefix('laporan')->group(function(){
+			Route::get('kota/{type}', 'Relawan\LaporanController@indexKota');
+			Route::get('kecamatan/{id}/{type}', 'Relawan\LaporanController@indexKecamatan');
+			Route::get('kelurahan/{id}/{type}', 'Relawan\LaporanController@indexKelurahan');
+
+			Route::get('detail/{field}/{id}/{type}', 'Relawan\LaporanController@detail');
+
+			// Grafik
+			Route::get('grafik/{field}/{id?}', 'Relawan\LaporanGrafikController@index');
+		});
 	});
 
 	Route::prefix('pemilih')->group(function(){

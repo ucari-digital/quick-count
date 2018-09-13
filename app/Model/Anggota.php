@@ -21,7 +21,8 @@ class Anggota extends Authenticatable
     	$field->name = $r->name;
     	$field->email = $r->email;
     	$field->password = Hash::make($r->password);
-    	$field->no_ktp = $r->no_ktp;
+        $field->no_ktp = $r->no_ktp;
+    	$field->no_kartu_keluarga = $r->no_kk;
     	$field->jk = $r->jk;
     	$field->ttl = $r->ttl;
     	$field->alamat = $r->alamat;

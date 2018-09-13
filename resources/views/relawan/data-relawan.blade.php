@@ -139,13 +139,17 @@ $auth = App\Helper\Lib::auth();
 </div>
 <div class="row">
 	<div class="col-md-12">
-		<div class="m-datatable">
-			<table class="table table-striped dtable-r">
+		<div class="m-datatable table-responsive">
+			<table class="table table-striped dtable-r" style="width: 1200px">
 			<thead>
 				<tr>
-					<th>Nomor KTP</th>
-					<th>Nama Lengkap</th>
-					<th>No. HP</th>
+					<th>No. KK</th>
+					<th>No. KTP</th>
+					<th>Nama</th>
+					<th>Jenis Kelamin</th>
+					<th>Tgl. Lahir</th>
+					<th>Kecamatan</th>
+					<th>Kelurahan</th>
 					<th>Sebagai Saksi</th>
 					@if($auth->role != 'relawan')
 					<th>Aksi</th>
@@ -155,13 +159,21 @@ $auth = App\Helper\Lib::auth();
 			<tbody>
 				@foreach($data as $item)
 				<tr>
+					<td>{{$item->no_kartu_keluarga}}</td>
 					<td>{{$item->no_ktp}}</td>
 					<td>{{$item->name}}</td>
-					<td>{{$item->no_hp}}</td>
-					@if($item->posisi == 'saksi')
-					<td>Ya</td>
+					@if($item->jk == 'L')
+					<td style="width: 120px">Laki - Laki</td>
 					@else
-					<td>Tidak</td>
+					<td style="width: 120px">Perempuan</td>
+					@endif
+					<td>{{App\Helper\TimeFormat::id(explode(',', $item->ttl)[1])}}</td>
+					<td>{{App\Model\Kecamatan::getName($item->kecamatan)->name}}</td>
+					<td>{{App\Model\Kelurahan::getName($item->kelurahan)->name}}</td>
+					@if($item->posisi == 'saksi')
+					<td style="width: 130px">Ya</td>
+					@else
+					<td style="width: 130px">Tidak</td>
 					@endif
 					@if($auth->role != 'relawan')
 					<td>

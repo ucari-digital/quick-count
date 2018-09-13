@@ -160,6 +160,15 @@
                 }
             );
         }
+        // $('.dtable-rs').DataTable();
+        //     var t = $('.dtable-r').DataTable( {
+        //         "dom": "<'row mt-4' <'col-md-6'l><'col-md-6'f>><'row justify-content-end' <'col-md-4'<'float-right'B>> ><'table-responsive'tr> <'row mt-2' <'col-md-6'i><'col-md-6'p>>"
+        //     } );
+        //     t.on( 'order.dt search.dt', function () {
+        //         t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+        //             cell.innerHTML = i+1;
+        //         } );
+        //     } ).draw();
         $('.provinsi').change(function(){
         $('.kabkota').html('');
         $('.kabkota').append($("<option></option>").attr("value", "").text('PILIH'));

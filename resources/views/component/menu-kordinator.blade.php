@@ -7,36 +7,56 @@
         </a>
     </li>
     <li class="sidebar-section-nav__item">
-        <a class="sidebar-section-nav__link" href="{{url('kordinator/dl/'.$auth->anggota_id)}}">
-            <span class="sidebar-section-nav__item-icon mdi mdi-account-multiple-plus"></span>
-            <span class="sidebar-section-nav__item-text">Anggota</span>
+        <a class="sidebar-section-nav__link" href="{{url('relawan')}}">
+            <span class="sidebar-section-nav__item-icon mdi mdi-account-check"></span>
+            <span class="sidebar-section-nav__item-text">Relawan / Saksi</span>
         </a>
+    </li>
+    <li class="sidebar-section-nav__item">
+        <a class="sidebar-section-nav__link sidebar-section-nav__link-dropdown" href="#">
+            <span class="sidebar-section-nav__item-icon mdi mdi-account-star"></span>
+            <span class="sidebar-section-nav__item-text">Koordinator</span>
+        </a>
+        <ul class="sidebar-section-subnav">
+            <li class="sidebar-section-subnav__item"><a class="sidebar-section-subnav__link" href="{{url('kordinator/pusat')}}">Semua Koordinator</a></li>
+            <li class="sidebar-section-subnav__item"><a class="sidebar-section-subnav__link" href="{{url('kordinator/kabkota')}}">Kabupaten / Kota</a></li>
+            <li class="sidebar-section-subnav__item"><a class="sidebar-section-subnav__link" href="{{url('kordinator/kecamatan')}}">Kecamatan</a></li>
+            <li class="sidebar-section-subnav__item"><a class="sidebar-section-subnav__link" href="{{url('kordinator/kelurahan')}}">Kelurahan</a></li>
+        </ul>
     </li>
     <li class="sidebar-section-nav__item">
         <a class="sidebar-section-nav__link" href="{{url('kandidat')}}">
             <span class="sidebar-section-nav__item-icon mdi mdi-account-check"></span>
-            <span class="sidebar-section-nav__item-text">Data Kandidat</span>
+            <span class="sidebar-section-nav__item-text">Activity</span>
         </a>
     </li>
     <li class="sidebar-section-nav__item">
-        <a class="sidebar-section-nav__link sidebar-section-nav__link-dropdown" href="#">
-            <span class="sidebar-section-nav__item-icon mdi mdi-ray-start"></span>
-            <span class="sidebar-section-nav__item-text">Pra Event</span>
+        <a class="sidebar-section-nav__link" href="{{url('relawan/laporan/kota/row')}}">
+            <span class="sidebar-section-nav__item-icon mdi mdi-account-check"></span>
+            <span class="sidebar-section-nav__item-text">Laporan</span>
         </a>
-        <ul class="sidebar-section-subnav">
-            <li class="sidebar-section-subnav__item"><a class="sidebar-section-subnav__link" href="{{url('event/hasil-pendataan/pra')}}">Hasil Pendataan</a></li>
-        </ul>
     </li>
-
     <li class="sidebar-section-nav__item">
         <a class="sidebar-section-nav__link sidebar-section-nav__link-dropdown" href="#">
             <span class="sidebar-section-nav__item-icon mdi mdi-ray-end"></span>
-            <span class="sidebar-section-nav__item-text">Event</span>
+            <span class="sidebar-section-nav__item-text">Quick Count</span>
         </a>
         <ul class="sidebar-section-subnav">
             <li class="sidebar-section-subnav__item"><a class="sidebar-section-subnav__link" href="{{url('event/hasil-pendataan')}}">Hasil Pendataan</a></li>
             <li class="sidebar-section-subnav__item"><a class="sidebar-section-subnav__link" href="{{url('event/hasil-pendataan/detail')}}">Detail Pendataan</a></li>
             <li class="sidebar-section-subnav__item"><a class="sidebar-section-subnav__link" href="{{url('event/hasil-pendataan/detail/chart')}}">Detail Statistik</a></li>
+        </ul>
+    </li>
+    <li class="sidebar-section-nav__item">
+        <a class="sidebar-section-nav__link sidebar-section-nav__link-dropdown" href="#">
+            <span class="sidebar-section-nav__item-icon mdi mdi-ray-end"></span>
+            <span class="sidebar-section-nav__item-text">Setting</span>
+        </a>
+        <ul class="sidebar-section-subnav">
+            <li class="sidebar-section-subnav__item"><a class="sidebar-section-subnav__link" href="{{url('Kandidat')}}">Data Caleg Partai</a></li>
+            <li class="sidebar-section-subnav__item"><a class="sidebar-section-subnav__link" href="{{url('dpt')}}">Import DPT</a></li>
+            <li class="sidebar-section-subnav__item"><a class="sidebar-section-subnav__link" href="{{url('slide-show')}}">Slide Show</a></li>
+            <li class="sidebar-section-subnav__item"><a class="sidebar-section-subnav__link" href="{{url('slide-show')}}">Target Relawan & Saksi</a></li>
         </ul>
     </li>
 </ul>

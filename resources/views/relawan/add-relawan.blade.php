@@ -29,19 +29,25 @@
 					<input type="hidden" name="referred_by" value="{{App\Helper\Lib::auth()->anggota_id}}">
 					<input type="hidden" name="posisi" value="{{App\Helper\Lib::auth()->posisi}}">
 					<div class="row">
-						<div class="col-md-5">
+						<div class="col-md-3">
 							<div class="form-group">
 								<label>No KTP</label>
 								<input type="text" name="no_ktp" class="form-control" placeholder="No KTP" />
 							</div>
 						</div>
-						<div class="col-md-5">
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>No Kartu Keluarga</label>
+								<input type="text" name="no_kk" class="form-control" placeholder="No Kartu Keluarga" />
+							</div>
+						</div>
+						<div class="col-md-3">
 							<div class="form-group">
 								<label>Nama (Sesuai KTP)</label>
 								<input type="text" name="name" class="form-control" placeholder="Nama Lengkap" onchange="GUID(this.value)" />
 							</div>
 						</div>
-						<div class="col-md-2">
+						<div class="col-md-3">
 							<div class="form-group">
 								<label>Jenis Kelamin</label>
 								<select name="jk" id="" class="form-control">
