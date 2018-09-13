@@ -8,9 +8,9 @@ $auth = App\Helper\Lib::auth();
 		<h2 class="page-content__header-heading">Pendataan Pra Event</h2>
 	</div>
 	<div class="page-content__header-meta">
-		<a href="{{url('kandidat/create')}}" class="btn btn-info icon-left">
+		<button class="btn btn-info icon-left" data-toggle="modal" data-target="#cariModal">
 			Cari
-		</a>
+		</button>
 	</div>
 </div>
 <div class="row">

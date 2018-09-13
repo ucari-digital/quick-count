@@ -17,7 +17,8 @@ class PusatController extends Controller
 {
         public function index()
     {
-    	$data_pusat = Anggota::where('posisi', 'pusat')->get();
+        $auth = Lib::auth();
+    	$data_pusat = Anggota::where('group_id', $auth->group_id)->where('posisi', 'pusat')->get();
         $provinsi = Provinsi::all();
         $data = [];
         foreach ($data_pusat as $numb => $item) {

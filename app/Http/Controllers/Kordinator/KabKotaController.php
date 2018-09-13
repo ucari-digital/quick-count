@@ -19,7 +19,8 @@ class KabKotaController extends Controller
 {
     public function index(Request $request)
     {
-    	$data_kabkota = Anggota::where('posisi', 'kabkota')->get();
+        $auth = Lib::auth();
+    	$data_kabkota = Anggota::where('group_id', $auth->group_id)->where('posisi', 'kabkota')->get();
 
         $data = [];
         foreach ($data_kabkota as $numb => $item) {
