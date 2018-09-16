@@ -52,7 +52,7 @@ class PusatController extends Controller
 			$input['posisi'] = 'pusat';
 			$input['role'] = 'kordinator';
 			$input['avatar'] = $file_name;
-            $input['group_id'] = Lib::auth()->group_id;
+            $input['group_id'] = 'G'.rand(0000,9999);
             $input['referred_by'] = Lib::auth()->anggota_id;
 
 	    	$anggota = Anggota::store($input);

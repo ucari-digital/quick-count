@@ -181,6 +181,7 @@ Route::middleware(['anggota'])->group(function(){
 	Route::get('anggota/{anggota_id}', 'GController@anggota');
 	Route::get('pencarian-anggota', 'GController@pencarianAnggota');
 	Route::get('chart-kandidat', 'GController@chartKandidat');
+	Route::get('search_anggota/{nik}', 'GController@searchAnggota');
 	Route::get('logout', 'GController@logout');
 });
 

@@ -159,5 +159,10 @@ class GController extends Controller
 
         return $arr_anggota;
     }
+
+    public function searchAnggota($nik)
+    {
+        return Anggota::where('no_ktp', $nik)->where('group_id', Lib::auth()->group_id)->first();
+    }
     
 }

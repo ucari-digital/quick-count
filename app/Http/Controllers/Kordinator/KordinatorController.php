@@ -133,9 +133,15 @@ class KordinatorController extends Controller
             $input['group_id'] = Lib::auth()->group_id;
             $input['referred_by'] = Lib::auth()->anggota_id;
 
+            if ($posisi == 'kabkota') {
+                $st = 'Kabupaten / Kota';
+            } else {
+                $st = ucfirst($posisi);
+            }
+
             $anggota = Anggota::store($input);
             $field = [
-                'message' => 'mendaftarkan <b>'.$anggota->name.'</b> sebagai Relawan',
+                'message' => 'mendaftarkan <b>'.$anggota->name.'</b> sebagai Koordinator '.$st,
                 'image' => '',
                 'referrer' => $anggota->id,
                 'type' => 'simpan'
@@ -146,7 +152,9 @@ class KordinatorController extends Controller
             ->with('status', 'success')
             ->with('message', 'Berhasil mendaftarkan anggota');
         } catch (\Exception $e) {
-            
+            return redirect()->back()
+            ->with('status', 'failed')
+            ->with('message', $e->getMessage());
         }
     }
 

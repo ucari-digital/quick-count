@@ -57,7 +57,7 @@ class KecamatanController extends Controller
 
 	    	$anggota = Anggota::store($input);
             $field = [
-                'message' => 'mendaftarkan <b>'.$anggota->name.'</b> sebagai Koordinator Kelurahan',
+                'message' => 'mendaftarkan <b>'.$anggota->name.'</b> sebagai Koordinator Kecamatan',
                 'image' => '',
                 'referrer' => $anggota->id,
                 'type' => 'simpan'

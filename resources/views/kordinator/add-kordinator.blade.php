@@ -32,7 +32,7 @@
 						<div class="col-md-5">
 							<div class="form-group">
 								<label>No KTP</label>
-								<input type="text" name="no_ktp" class="form-control" placeholder="No KTP" />
+								<input type="text" name="no_ktp" class="form-control nik" placeholder="No KTP" />
 							</div>
 						</div>
 						<div class="col-md-5">

@@ -148,6 +148,60 @@
     <script src="{{url('js/preview/sales-dashboard.min.js')}}"></script>
     <script src="https://unpkg.com/imask"></script>
     <script type="text/javascript">
+        $(document).ready(function() {
+            $('.nik').keyup(function(){
+                $.get('{{url('search_anggota')}}/'+this.value, function(data){
+                    var str_tempat = data.ttl;
+                    var tempat = str_tempat.split(',');
+                    var str_thn = tempat[1].split('-');
+                    $('input[name="name"]').val(data.name);
+                    $('select[name="jk"]').html($("<option></option>")
+                        .attr("value",data.jk)
+                        .text(data.jk));
+                    $('input[name="tempat"]').val(tempat[0]);
+                    $('input[name="tgl_lahir"]').val(str_thn[2]+'-'+str_thn[1]+'-'+str_thn[0]);
+                    $('input[name="alamat"]').val(data.alamat);
+                    $('input[name="rtrw"]').val(data.rtrw);
+
+                    // Add select wilayah
+                    $("select[name='provinsi']").val(data.provinsi).trigger('change.select2');
+                    $.get('{{url('kota')}}/'+data.provinsi, function(c){
+                        $.each(c, function(key, value) {  
+                            console.log(value);
+                            $('.kabkota')
+                            .append($("<option></option>")
+                                .attr("value",value.id)
+                                .text(value.name)); 
+                        });
+                        $("select[name='kabkota']").val(data.kabkota).trigger('change.select2');
+                    });
+
+                    $.get('{{url('kecamatan')}}/'+data.kabkota, function(c){
+                        $.each(c, function(key, value) {  
+                            $('.kecamatan')
+                            .append($("<option></option>")
+                                .attr("value",value.id)
+                                .text(value.name)); 
+                        });
+                        $("select[name='kecamatan']").val(data.kecamatan).trigger('change.select2');
+                    });
+
+                    $.get('{{url('kelurahan')}}/'+data.kecamatan, function(c){
+                        $.each(c, function(key, value) {  
+                            $('.kelurahan')
+                            .append($("<option></option>")
+                                .attr("value",value.id)
+                                .text(value.name)); 
+                        });
+                        $("select[name='kelurahan']").val(data.kelurahan).trigger('change.select2');
+                    });
+
+                    var array = data.name.split(' ');
+                    $("input[name=anggota_id]").val(array[0]+getRandomInt(99))
+
+                });
+            });
+        });
         var el = document.getElementById('date-mask');
         if (el) {
             var dateMask = new IMask(
@@ -160,6 +214,7 @@
                 }
             );
         }
+
         // $('.dtable-rs').DataTable();
         //     var t = $('.dtable-r').DataTable( {
         //         "dom": "<'row mt-4' <'col-md-6'l><'col-md-6'f>><'row justify-content-end' <'col-md-4'<'float-right'B>> ><'table-responsive'tr> <'row mt-2' <'col-md-6'i><'col-md-6'p>>"

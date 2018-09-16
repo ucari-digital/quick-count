@@ -30,7 +30,7 @@
 						<div class="col-md-5">
 							<div class="form-group">
 								<label>No KTP</label>
-								<input type="text" name="no_ktp" class="form-control" placeholder="No KTP" />
+								<input type="text" name="no_ktp" class="form-control nik" placeholder="No KTP" />
 							</div>
 						</div>
 						<div class="col-md-5">
@@ -42,7 +42,7 @@
 						<div class="col-md-2">
 							<div class="form-group">
 								<label>Jenis Kelamin</label>
-								<select name="jk" id="" class="form-control">
+								<select name="jk" class="form-control">
 									<option value="L">L</option>
 									<option value="P">P</option>
 								</select>
@@ -113,7 +113,7 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Agama</label>
-								<select name="agama" id="" class="form-control">
+								<select name="agama" class="form-control">
 									<option value="islam">Islam</option>
 									<option value="kristen protestan">Kristen Protestan</option>
 									<option value="katolik">Katolik</option>
@@ -171,7 +171,7 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Divisi Jarigan</label>
-								<select name="divisi_jaringan" id="" class="form-control">
+								<select name="divisi_jaringan" class="form-control">
 									<option value="Gerindra">Gerindra</option>
 									<option value="PAN">PAN</option>
 									<option value="PKS">PKS</option>
