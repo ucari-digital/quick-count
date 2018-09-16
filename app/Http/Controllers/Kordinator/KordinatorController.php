@@ -13,6 +13,9 @@ use App\Model\Kandidat;
 use App\Model\Provinsi;
 use App\Model\Kelurahan;
 use App\Model\Kota;
+use App\Model\Slider;
+use App\Model\Activity;
+use App\Model\Target;
 use App\Helper\TimeFormat;
 use App\Helper\Lib;
 class KordinatorController extends Controller
@@ -28,6 +31,7 @@ class KordinatorController extends Controller
         $caleg = Kandidat::where('group_id', Lib::auth()->group_id)->count();
         $saksi = Anggota::where('group_id', Lib::auth()->group_id)->where('posisi', 'saksi')->count();
         $top_relawan = Anggota::where('group_id', Lib::auth()->group_id)->where('role', 'relawan')->get();
+        $slider = Slider::orderBy('created_at', 'DESC');
 
         $relawan_kelurahan = [];
         foreach ($top_relawan as $numb => $item) {
@@ -61,7 +65,7 @@ class KordinatorController extends Controller
             $t_relawan['value'][] = '';
         }
 
-    	return view('kordinator.kordinator', compact('kabkota', 'kecamatan', 'kelurahan', 'rtrw', 'saksi', 'relawan', 'pemilih', 'caleg', 'saksi', 't_relawan'));
+    	return view('kordinator.kordinator', compact('kabkota', 'kecamatan', 'kelurahan', 'rtrw', 'saksi', 'relawan', 'pemilih', 'caleg', 'saksi', 't_relawan', 'slider'));
     }
 
     public function all(Request $request)
@@ -127,8 +131,16 @@ class KordinatorController extends Controller
             $input['role'] = 'kordinator';
             $input['avatar'] = $file_name;
             $input['group_id'] = Lib::auth()->group_id;
+            $input['referred_by'] = Lib::auth()->anggota_id;
 
-            Anggota::store($input);
+            $anggota = Anggota::store($input);
+            $field = [
+                'message' => 'mendaftarkan <b>'.$anggota->name.'</b> sebagai Relawan',
+                'image' => '',
+                'referrer' => $anggota->id,
+                'type' => 'simpan'
+            ];
+            Activity::store($field);
 
             return redirect('kordinator/kabkota/create')
             ->with('status', 'success')

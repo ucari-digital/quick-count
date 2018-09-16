@@ -14,7 +14,7 @@ class AnggotaTableSeeder extends Seeder
     public function run()
     {
         DB::table('anggota')->insert([
-        	'group_id' => '',
+        	'group_id' => 'G'.rand(0000,9999),
         	'anggota_id' => 'superadmin',
         	'name' => 'superadmin',
         	'email' => 'su@gmail.com',

@@ -25,7 +25,7 @@
         </ul>
     </li>
     <li class="sidebar-section-nav__item">
-        <a class="sidebar-section-nav__link" href="{{url('kandidat')}}">
+        <a class="sidebar-section-nav__link" href="{{url('activity')}}">
             <span class="sidebar-section-nav__item-icon mdi mdi-account-check"></span>
             <span class="sidebar-section-nav__item-text">Activity</span>
         </a>
@@ -55,7 +55,7 @@
         <ul class="sidebar-section-subnav">
             <li class="sidebar-section-subnav__item"><a class="sidebar-section-subnav__link" href="{{url('kandidat')}}">Data Caleg Partai</a></li>
             <li class="sidebar-section-subnav__item"><a class="sidebar-section-subnav__link" href="{{url('dpt')}}">Import DPT</a></li>
-            <li class="sidebar-section-subnav__item"><a class="sidebar-section-subnav__link" href="{{url('slide-show')}}">Slide Show</a></li>
+            <li class="sidebar-section-subnav__item"><a class="sidebar-section-subnav__link" href="{{url('setting/slider')}}">Slide Show</a></li>
             <li class="sidebar-section-subnav__item"><a class="sidebar-section-subnav__link" href="{{url('slide-show')}}">Target Relawan & Saksi</a></li>
         </ul>
     </li>

@@ -79,32 +79,43 @@ class DPTController extends Controller
 
     public function upload(Request $request)
     {
-    	$excel = $request->excel->getRealPath();
-    	$data = Excel::selectSheets('FORM')->load($excel, function($reader){
-    		$reader->setDateFormat('Y-m-d');
-    		foreach ($reader->get() as $item) {
-    			$field = new Anggota;
-    			$field->group_id = Lib::auth()->group_id;
-		        $field->referred_by = Lib::auth()->anggota_id;
-		    	$field->name = $item->nama;
-		    	$field->no_ktp = $item->nik;
-		    	$field->no_kartu_keluarga = $item->nkk;
-		    	$field->jk = $item->jenis_kelamin;
-		    	$field->ttl = $item->tp_lahir.','.$item->tgl_lahir;
-		    	$field->status_kawin = $item->status_kawin;
-		    	$field->alamat = $item->alamat;
-		    	$field->rtrw = $item->rt.'/'.$item->rw;
-		    	$field->tps = $item->tps;
-		    	$field->kelurahan = $item->kode_desa;
-		    	$field->kecamatan = $item->kode_kecamatan;
-		    	$field->kabkota = $item->kode_kabupaten;
-		    	$field->provinsi = $item->kode_provinsi;
-		    	$field->posisi = 'pemilih';
-		    	$field->role = 'pemilih';
-		    	$field->save();
-    		}
-    	});
+        try {
+        	$excel = $request->excel->getRealPath();
+        	$data = Excel::selectSheets('FORM')->load($excel, function($reader){
+        		$reader->setDateFormat('Y-m-d');
+        		foreach ($reader->get() as $item) {
+                    $tgl = substr($item->tgl_lahir, 0, 2);
+                    $bln = substr($item->tgl_lahir, 3, 2);
+                    $thn = substr($item->tgl_lahir, 6, 4);
+        			$field = new Anggota;
+        			$field->group_id = Lib::auth()->group_id;
+    		        $field->referred_by = Lib::auth()->anggota_id;
+    		    	$field->name = $item->nama;
+    		    	$field->no_ktp = ''.$item->nik;
+    		    	$field->no_kartu_keluarga = ''.$item->nkk;
+    		    	$field->jk = $item->jenis_kelamin;
+    		    	$field->ttl = $item->tp_lahir.','.$thn.'-'.$bln.'-'.$tgl;
+    		    	$field->status_kawin = $item->status_kawin;
+    		    	$field->alamat = $item->alamat;
+    		    	$field->rtrw = $item->rt.'/'.$item->rw;
+    		    	$field->tps = $item->tps;
+    		    	$field->kelurahan = $item->kode_desa;
+    		    	$field->kecamatan = $item->kode_kecamatan;
+    		    	$field->kabkota = $item->kode_kabupaten;
+    		    	$field->provinsi = $item->kode_provinsi;
+    		    	$field->posisi = 'pemilih';
+    		    	$field->role = 'pemilih';
+    		    	$field->save();
+        		}
+        	});
 
-        return redirect()->back();
+            return redirect()->back()
+            ->with('status', 'success')
+            ->with('message', 'Berhasil Import data');
+        } catch (\Exception $e) {
+            return redirect()->back()
+            ->with('status', 'success')
+            ->with('message', $e->getMessage);
+        }
     }
 }

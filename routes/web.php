@@ -158,6 +158,19 @@ Route::middleware(['anggota'])->group(function(){
 		Route::get('divisi-jaringan/hapus/{id}', 'SettingController@divisiJaringanDelete');
 	});
 
+	Route::prefix('activity')->group(function(){
+		Route::get('/', 'Activity\ActivityController@index');
+	});
+
+	Route::prefix('setting')->group(function(){
+		Route::get('slider', 'Setting\SliderController@index');
+		Route::post('slider/create', 'Setting\SliderController@create');
+		Route::get('slider/delete/{id}', 'Setting\SliderController@delete');
+
+		Route::get('target', 'Setting\TargetController@index');
+		Route::post('target/store', 'Setting\TargetController@store');
+	});
+
 	/* 
 	 * Global ROuting
 	 */
@@ -165,18 +178,15 @@ Route::middleware(['anggota'])->group(function(){
 	Route::post('profil/update/{anggota_id}', 'GController@profilUpdate');
 	Route::get('dl/{role}/{anggota_id}', 'GController@downline');
 	Route::get('hapus/u/{anggota_id}', 'GController@hapusAnggota');
-	Route::get('kota/{id}', 'GController@kota');
-	Route::get('kecamatan/{id}', 'GController@kecamatan');
-	Route::get('kelurahan/{id}', 'GController@kelurahan');
 	Route::get('anggota/{anggota_id}', 'GController@anggota');
 	Route::get('pencarian-anggota', 'GController@pencarianAnggota');
 	Route::get('chart-kandidat', 'GController@chartKandidat');
 	Route::get('logout', 'GController@logout');
 });
 
-
-Route::get('layout', function(){
-	return view('layout');
-});
+Route::get('kota/{id}', 'GController@kota');
+Route::get('kecamatan/{id}', 'GController@kecamatan');
+Route::get('kelurahan/{id}', 'GController@kelurahan');
+Route::get('wilayah', 'GController@wilayah');
 
 

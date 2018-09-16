@@ -74,4 +74,9 @@ class Anggota extends Authenticatable
     	]);
     	return $field;
     }
+
+    public static function detail($r)
+    {
+        return self::where('anggota_id', $r)->first();
+    }
 }

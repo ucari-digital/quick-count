@@ -4,7 +4,7 @@
 	<div>
 		<h2 class="page-content__header-heading">Kordinator Kabupaten / Kota</h2>
 	</div>
-	@if($auth->posisi == 'kabkota' || $auth->posisi == 'superadmin')
+	@if($auth->posisi == 'kabkota' || $auth->posisi == 'superadmin' || $auth->posisi == 'pusat')
 	<div class="page-content__header-meta">
 		<a href="{{url('kordinator/kabkota/create')}}" class="btn btn-info icon-left">
 			Tambah

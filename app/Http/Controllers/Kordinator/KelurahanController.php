@@ -11,6 +11,7 @@ use App\Model\Provinsi;
 use App\Model\Kota;
 use App\Model\Kecamatan;
 use App\Model\Kelurahan;
+use App\Model\Activity;
 
 use App\Helper\TimeFormat;
 use App\Helper\Lib;
@@ -50,8 +51,16 @@ class KelurahanController extends Controller
 			$input['role'] = 'kordinator';
 			$input['avatar'] = $file_name;
             $input['group_id'] = Lib::auth()->group_id;
+            $input['referred_by'] = Lib::auth()->anggota_id;
 
-	    	Anggota::store($input);
+	    	$anggota = Anggota::store($input);
+            $field = [
+                'message' => 'mendaftarkan <b>'.$anggota->name.'</b> sebagai Relawan',
+                'image' => '',
+                'referrer' => $anggota->id,
+                'type' => 'simpan'
+            ];
+            Activity::store($field);
 
 	    	return redirect('kordinator/kelurahan/create')
 	    	->with('status', 'success')

@@ -10,6 +10,25 @@ $auth = App\Helper\Lib::auth();
 </div>
 @endsection
 @section('content')
+<div class="row mb-4">
+	<div class="col-md-12">
+		<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+			<div class="carousel-inner">
+				@foreach($slider as $numb => $item)
+				@if($numb == 0)
+				<div class="carousel-item active">
+					<img class="d-block w-100" src="{{url($item->image)}}" style="height: 300px" alt="First slide">
+				</div>
+				@else
+				<div class="carousel-item">
+					<img class="d-block w-100" src="{{url($item->image)}}" style="height: 300px" alt="First slide">
+				</div>
+				@endif
+				@endforeach
+			</div>
+		</div>
+	</div>
+</div>
 <div class="row">
 	<div class="col-xl-3 col-lg-3 col-md-6">
 		@if($auth->posisi == 'kabkota' || $auth->posisi == 'pusat' || $auth->posisi == 'superadmin')

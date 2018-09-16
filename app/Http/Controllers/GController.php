@@ -87,6 +87,12 @@ class GController extends Controller
         return view('page.downline', compact('data', 'anggota', 'role'));
     }
 
+    public function wilayah()
+    {
+        $provinsi = $provinsi = Provinsi::all();
+        return view('page.wilayah', compact('provinsi'));
+    }
+
     public function kota($id)
     {
         $data = Kota::where('province_id', $id)->get();

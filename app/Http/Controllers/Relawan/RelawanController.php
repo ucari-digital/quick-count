@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use App\Model\Anggota;
 use App\Model\Provinsi;
 use App\Model\Kota;
+use App\Model\Target;
 
 use App\Helper\TimeFormat;
 use App\Helper\Lib;
@@ -19,11 +20,12 @@ class RelawanController extends Controller
     public function relawan()
     {
         $auth = Lib::auth();
+        $provinsi = Provinsi::all();
         $total_relawan = Anggota::where('group_id', $auth->group_id)->where('role', 'relawan')->count();
         $total_saksi  = Anggota::where('group_id', $auth->group_id)->where('posisi', 'saksi')->count();
         $total_relawan_p = Anggota::where('group_id', $auth->group_id)->where('role', 'relawan')->where('jk', 'P')->count();
         $total_relawan_l = Anggota::where('group_id', $auth->group_id)->where('role', 'relawan')->where('jk', 'L')->count();
-
+        $target = Target::find(1);
 
         if ($auth->role == 'superadmin') {
             $data_anggota = Anggota::where('group_id', $auth->group_id)->where('posisi', 'relawan')->where('role', 'relawan')->get();
@@ -37,10 +39,10 @@ class RelawanController extends Controller
             $data[$numb]['downline'] = Anggota::where('group_id', $auth->group_id)->where('referred_by', $item->anggota_id)->where('role', 'pemilih')->count();
         }
 
-        $provinsi = Provinsi::all();
+        $new_relawan = Anggota::where('group_id', $auth->group_id)->where('role', 'relawan')->orderBy('created_at', 'DESC')->take(10)->get();
 
         // Chart
-        $day = Anggota::get()->groupBy(function($date){
+        $day = Anggota::whereDate('created_at', Carbon::today())->where('role', 'relawan')->get()->groupBy(function($date){
             return Carbon::parse($date->created_at)->format('h');
         });
         $days = [];
@@ -66,8 +68,38 @@ class RelawanController extends Controller
             }
         }
 
-        return view('relawan.relawan', compact('data', 'total_saksi', 'total_relawan', 'total_relawan_l', 'total_relawan_p', 'provinsi', 'days'));
+        $start_week = Carbon::now()->startOfWeek();
+        $end_week = Carbon::now()->startOfWeek()->addDays(7);
+        $week = [];
+        for ($i=0; $i <= 7; $i++) { 
+            $start = Carbon::now()->startOfWeek()->addDays($i);
+            $end = Carbon::now()->startOfWeek()->addDays($i+1);
+            $week['value'][] = self::time($start, $end);
+            $week['time'][] = $start->format('d');
+        }
+
+        $start_month = Carbon::now()->startOfMonth();
+        $end_month = Carbon::now()->endOfMonth();
+        $diff_month = $start_month->diffInDays($end_month);
+        $month = [];
+        for ($i=0; $i <= $diff_month; $i++) {
+            $start = Carbon::now()->startOfMonth()->addDays($i); 
+            $end = Carbon::now()->startOfMonth()->addDays($i+1); 
+            $month['value'][] = self::time($start, $end);
+            $month['time'][] = $start->format('d');
+        }
+
+        return view('relawan.relawan', compact('data', 'new_relawan', 'total_saksi', 'total_relawan', 'total_relawan_l', 'total_relawan_p', 'provinsi', 'days', 'week', 'month', 'target'));
     }
+
+    // +++++++++++++++++++++ Static Function +++++++++++++++++++++++++
+
+    public static function time($start_date, $end_date)
+    {
+        return Anggota::where('created_at', '>=', $start_date)->where('created_at', '<=', $end_date)->where('role', 'relawan')->count();
+    }
+
+    // +++++++++++++++++++ End Static Function +++++++++++++++++++++++
 
     public function index(Request $request)
     {
