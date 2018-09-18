@@ -38,7 +38,7 @@ $auth = App\Helper\Lib::auth();
 		@endif
 			<div>
 				<div class="widget-alpha__amount">{{$kabkota}} Orang</div>
-				<div class="widget-alpha__description">Kordinator Kab / Kota</div>
+				<div class="widget-alpha__description">Kordinator Kota</div>
 			</div>
 			<span class="widget-alpha__icon ua-icon-widget-user"></span>
 		</div>
