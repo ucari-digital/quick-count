@@ -9,7 +9,7 @@
     <li class="sidebar-section-nav__item">
         <a class="sidebar-section-nav__link" href="{{url('relawan')}}">
             <span class="sidebar-section-nav__item-icon mdi mdi-account-check"></span>
-            <span class="sidebar-section-nav__item-text">Relawan / Saksi</span>
+            <span class="sidebar-section-nav__item-text">Pemilih</span>
         </a>
     </li>
     <li class="sidebar-section-nav__item">
