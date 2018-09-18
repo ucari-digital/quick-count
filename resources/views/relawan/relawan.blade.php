@@ -1,11 +1,11 @@
 @extends('component.dashboard_layout')
 @section('title')
-Relawan
+Calon Pemilih
 @endsection
 @section('breadcrumb')
 <div class="page-content__header">
 	<div>
-		<h2 class="page-content__header-heading">Relawan</h2>
+		<h2 class="page-content__header-heading">Calon Pemilih</h2>
 	</div>
 </div>
 @endsection
@@ -15,7 +15,7 @@ Relawan
 		<div class="widget widget-alpha widget-alpha--color-amaranth">
 			<div>
 				<div class="widget-alpha__amount">{{$total_relawan_l}}</div>
-				<div class="widget-alpha__description">Relawan Laki-Laki</div>
+				<div class="widget-alpha__description">Calon Pemilih Laki-Laki</div>
 			</div>
 			<span class="widget-alpha__icon ua-icon-widget-user"></span>
 		</div>
@@ -24,7 +24,7 @@ Relawan
 		<div class="widget widget-alpha widget-alpha--color-green-jungle">
 			<div>
 				<div class="widget-alpha__amount">{{$total_relawan_p}}</div>
-				<div class="widget-alpha__description">Relawan Perempuan</div>
+				<div class="widget-alpha__description">Calon Pemilih Perempuan</div>
 			</div>
 			<span class="widget-alpha__icon ua-icon-widget-user"></span>
 		</div>
@@ -33,7 +33,7 @@ Relawan
 		<div class="widget widget-alpha widget-alpha--color-orange">
 			<div>
 				<div class="widget-alpha__amount">{{$total_relawan}} / {{$target['relawan']}}</div>
-				<div class="widget-alpha__description">Target Relawan</div>
+				<div class="widget-alpha__description">Target Calon Pemilih</div>
 			</div>
 			<span class="widget-alpha__icon ua-icon-widget-user"></span>
 		</div>
@@ -42,7 +42,7 @@ Relawan
 		<div class="widget widget-alpha widget-alpha--color-java">
 			<div>
 				<div class="widget-alpha__amount">{{$total_relawan}}</div>
-				<div class="widget-alpha__description">Jumlah Relawan</div>
+				<div class="widget-alpha__description">Jumlah Calon Pemilih</div>
 			</div>
 			<span class="widget-alpha__icon ua-icon-widget-user"></span>
 		</div>
@@ -54,7 +54,7 @@ Relawan
 			<div class="statistic-widget-c__heading mb-0">
 				<div class="row">
 					<div class="col-md-6">
-						Statistik Relawan
+						Statistik Calon Pemilih
 					</div>
 					<div class="col-md-6">
 						<ul class="nav nav-tabs float-right" id="myTab" role="tablist">
@@ -91,7 +91,7 @@ Relawan
 		<div class="widget widget-controls widget-contacts widget-controls--dark" style="height: 400px">
 			<div class="widget-controls__header">
 				<div>
-					<span class="widget-controls__header-icon ua-icon-user-solid"></span> 10 Relawan Terbaru
+					<span class="widget-controls__header-icon ua-icon-user-solid"></span> 10 Calon Pemilih Terbaru
 				</div>
 			</div>
 			<div class="widget-controls__content js-scrollable" data-simplebar="init"><div class="simplebar-track vertical" style="visibility: visible;"><div class="simplebar-scrollbar" style="top: 2px; height: 213px;"></div></div><div class="simplebar-track horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar"></div></div><div class="simplebar-scroll-content" style="padding-right: 17px; margin-bottom: -34px;"><div class="simplebar-content" style="padding-bottom: 17px; margin-right: -17px;">

@@ -19,7 +19,7 @@
         </a>
         <ul class="sidebar-section-subnav">
             <li class="sidebar-section-subnav__item"><a class="sidebar-section-subnav__link" href="{{url('kordinator/all')}}">Semua Koordinator</a></li>
-            <li class="sidebar-section-subnav__item"><a class="sidebar-section-subnav__link" href="{{url('kordinator/kabkota')}}">Kabupaten / Kota</a></li>
+            <li class="sidebar-section-subnav__item"><a class="sidebar-section-subnav__link" href="{{url('kordinator/kabkota')}}">Kota</a></li>
             <li class="sidebar-section-subnav__item"><a class="sidebar-section-subnav__link" href="{{url('kordinator/kecamatan')}}">Kecamatan</a></li>
             <li class="sidebar-section-subnav__item"><a class="sidebar-section-subnav__link" href="{{url('kordinator/kelurahan')}}">Kelurahan</a></li>
         </ul>
