@@ -32,7 +32,7 @@ Relawan
 	<div class="col-md-3">
 		<div class="widget widget-alpha widget-alpha--color-orange">
 			<div>
-				<div class="widget-alpha__amount">{{$total_relawan}} / {{$target->relawan}}</div>
+				<div class="widget-alpha__amount">{{$total_relawan}} / {{$target['relawan']}}</div>
 				<div class="widget-alpha__description">Target Relawan</div>
 			</div>
 			<span class="widget-alpha__icon ua-icon-widget-user"></span>

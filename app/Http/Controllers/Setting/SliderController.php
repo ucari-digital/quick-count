@@ -8,11 +8,12 @@ use Illuminate\Support\Facades\Storage;
 
 use App\Model\Slider;
 use App\Model\Activity;
+use App\Helper\Lib;
 class SliderController extends Controller
 {
     public function index()
     {
-    	$data = Slider::all();
+    	$data = Slider::where('group_id', Lib::auth()->group_id)->get();
     	return view('setting.slider', compact('data'));
     }
 
@@ -23,6 +24,7 @@ class SliderController extends Controller
 			$file_name = Storage::url($file);
 
     		$field = new Slider;
+            $field->group_id = Lib::auth()->group_id;
     		$field->image = $file_name;
     		$field->save();
 

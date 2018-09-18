@@ -12,7 +12,7 @@ use App\Model\Kota;
 use App\Model\Kecamatan;
 use App\Model\Kelurahan;
 use App\Model\Activity;
-
+use App\Model\Target;
 use App\Helper\TimeFormat;
 use App\Helper\Lib;
 class PusatController extends Controller
@@ -42,19 +42,21 @@ class PusatController extends Controller
     public function submit(Request $request)
     {
     	try {
-	    	$time = new TimeFormat;
-			$ttl = $time->date($request->tgl_lahir)->toFormat('sys');
-			$file = Storage::disk('public')->put('images/avatar', $request->foto);
-			$file_name = Storage::url($file);
+            $time = new TimeFormat;
+            $ttl = $time->date($request->tgl_lahir)->toFormat('sys');
+            $file = Storage::disk('public')->put('images/avatar', $request->foto);
+            $file_name = Storage::url($file);
 
-			$input = $request;
-			$input['ttl'] = $request->tempat.','.$ttl;
-			$input['posisi'] = 'pusat';
-			$input['role'] = 'kordinator';
-			$input['avatar'] = $file_name;
+            $input = $request;
+            $input['ttl'] = $request->tempat.','.$ttl;
+            $input['posisi'] = 'pusat';
+            $input['role'] = 'kordinator';
+            $input['avatar'] = $file_name;
             $input['group_id'] = 'G'.rand(0000,9999);
             $input['referred_by'] = Lib::auth()->anggota_id;
 
+            // Create Target
+            Target::store($input['group_id']);
 	    	$anggota = Anggota::store($input);
             $field = [
                 'message' => 'mendaftarkan <b>'.$anggota->name.'</b> sebagai Koordinator Pusat',
@@ -105,8 +107,6 @@ class PusatController extends Controller
 			} else {
 				$input['password'] = Hash::make($request->password);	
 			}
-
-
 			
 	    	Anggota::commit($anggota_id, $input);
 

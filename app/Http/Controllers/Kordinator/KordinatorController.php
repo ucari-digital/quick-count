@@ -31,7 +31,7 @@ class KordinatorController extends Controller
         $caleg = Kandidat::where('group_id', Lib::auth()->group_id)->count();
         $saksi = Anggota::where('group_id', Lib::auth()->group_id)->where('posisi', 'saksi')->count();
         $top_relawan = Anggota::where('group_id', Lib::auth()->group_id)->where('role', 'relawan')->get();
-        $slider = Slider::orderBy('created_at', 'DESC');
+        $slider = Slider::where('group_id', Lib::auth()->group_id)->orderBy('created_at', 'DESC')->get();
 
         $relawan_kelurahan = [];
         foreach ($top_relawan as $numb => $item) {

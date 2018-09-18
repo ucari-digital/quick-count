@@ -56,7 +56,7 @@
             <li class="sidebar-section-subnav__item"><a class="sidebar-section-subnav__link" href="{{url('kandidat')}}">Data Caleg Partai</a></li>
             <li class="sidebar-section-subnav__item"><a class="sidebar-section-subnav__link" href="{{url('dpt')}}">Import DPT</a></li>
             <li class="sidebar-section-subnav__item"><a class="sidebar-section-subnav__link" href="{{url('setting/slider')}}">Slide Show</a></li>
-            <li class="sidebar-section-subnav__item"><a class="sidebar-section-subnav__link" href="{{url('slide-show')}}">Target Relawan & Saksi</a></li>
+            <li class="sidebar-section-subnav__item"><a class="sidebar-section-subnav__link" href="{{url('setting/target')}}">Target Relawan & Saksi</a></li>
         </ul>
     </li>
 </ul>

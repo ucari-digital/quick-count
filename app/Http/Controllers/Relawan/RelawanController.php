@@ -25,7 +25,7 @@ class RelawanController extends Controller
         $total_saksi  = Anggota::where('group_id', $auth->group_id)->where('posisi', 'saksi')->count();
         $total_relawan_p = Anggota::where('group_id', $auth->group_id)->where('role', 'relawan')->where('jk', 'P')->count();
         $total_relawan_l = Anggota::where('group_id', $auth->group_id)->where('role', 'relawan')->where('jk', 'L')->count();
-        $target = Target::find(1);
+        $target = Target::where('id', 1)->first();
 
         if ($auth->role == 'superadmin') {
             $data_anggota = Anggota::where('group_id', $auth->group_id)->where('posisi', 'relawan')->where('role', 'relawan')->get();
