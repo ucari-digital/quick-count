@@ -9,7 +9,7 @@
     <li class="sidebar-section-nav__item">
         <a class="sidebar-section-nav__link" href="{{url('relawan')}}">
             <span class="sidebar-section-nav__item-icon mdi mdi-account-check"></span>
-            <span class="sidebar-section-nav__item-text">Pemilih</span>
+            <span class="sidebar-section-nav__item-text">Calon Pemilih</span>
         </a>
     </li>
     <li class="sidebar-section-nav__item">
@@ -27,7 +27,7 @@
     <li class="sidebar-section-nav__item">
         <a class="sidebar-section-nav__link" href="{{url('activity')}}">
             <span class="sidebar-section-nav__item-icon mdi mdi-account-check"></span>
-            <span class="sidebar-section-nav__item-text">Activity</span>
+            <span class="sidebar-section-nav__item-text">Distribusi APK</span>
         </a>
     </li>
     <li class="sidebar-section-nav__item">
