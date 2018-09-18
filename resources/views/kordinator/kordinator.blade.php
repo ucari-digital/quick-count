@@ -69,7 +69,7 @@ $auth = App\Helper\Lib::auth();
 		<div class="widget widget-alpha widget-alpha--color-java widget-alpha--help js-link" data-link="{{url('relawan/data')}}">
 			<div>
 				<div class="widget-alpha__amount">{{$relawan}}</div>
-				<div class="widget-alpha__description">Relawan</div>
+				<div class="widget-alpha__description">Calon Pemilih</div>
 			</div>
 			<span class="widget-alpha__icon ua-icon-widget-user"></span>
 		</div>
@@ -110,7 +110,7 @@ $auth = App\Helper\Lib::auth();
 <div class="row">
 	<div class="col-md-4 col-12">
 		<div class="statistic-widget statistic-widget-c" style="height: 450px">
-			<div class="statistic-widget-c__heading">Top 5 Relawan di Kelurahan</div>
+			<div class="statistic-widget-c__heading">Top 5 Calon Pemilih di Kelurahan</div>
 			<div class="statistic-widget-c__body">
 				<canvas id="relawanCountry"></canvas>
 			</div>
@@ -192,10 +192,10 @@ $auth = App\Helper\Lib::auth();
 	</div>
 	<div class="col-md-4 col-12">
 		<div class="statistic-widget statistic-widget-c" style="height: 450px">
-			<div class="statistic-widget-c__heading">Statistik Relawan dalam 6 Bulan</div>
+			<div class="statistic-widget-c__heading">Statistik Calon Pemilih dalam 6 Bulan</div>
 			<div class="statistic-widget-c__body">
 				<div class="statistic-widget-c__value">{{$pemilih}}</div>
-				<div class="statistic-widget-c__title">Total Daftar Pemilih Tetap</div>
+				<div class="statistic-widget-c__title">Calon Pemilih</div>
 				<a href="#" class="statistic-widget-c__link">Lihat lebih banyak</a>
 			</div>
 		</div>
