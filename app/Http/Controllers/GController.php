@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use Storage;
+use Hash;
 use App\Helper\Lib;
 use App\Helper\TimeFormat;
 use App\Model\Anggota;
